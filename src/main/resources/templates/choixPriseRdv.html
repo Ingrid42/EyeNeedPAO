@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>EyeNeed</title>
+	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+	<script src="js/jquery-3.1.1.min.js" th:href="@{js/jquery-3.1.1.min.js}" charset="utf-8"></script>
+	<link href="lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<link href="css/style_particule.css" rel="stylesheet"/>
+	<link href="css/accueil.css" rel="stylesheet"/>
+	<link href="css/navbar.css" rel="stylesheet"/>
+	<link href="css/index.css" rel="stylesheet"/>
+</head>
+<body>
+
+	<div id="particles-js">
+		<div class="bringFront">
+		<div  th:include="layouts/include :: headUser"></div>
+
+		<div class="row" ></div>
+
+			<div class="container-fluid">
+				<div class="row rowAccueil">
+
+					<div class="col-md-6 col-sm-3 col-xs-12">
+						<div class="wrimagecard wrimagecard-topimage">
+							<a href="rdvEnLigne">
+								<div class="wrimagecard-topimage_header bg-couleur1">
+									<center>
+										<i class="fa fa-desktop couleur1"> </i>
+									</center>
+								</div>
+								<div class="wrimagecard-topimage_title">
+									<h4>
+										Rendez-vous en ligne
+										<div class="pull-right badge" id="WrForms"></div>
+									</h4>
+								</div>
+
+							</a>
+						</div>
+					</div>				
+					<div class="col-md-6 col-sm-3 col-xs-12">
+						<div class="wrimagecard wrimagecard-topimage">
+							<a href="prendreUnRdv">
+								<div class="wrimagecard-topimage_header bg-couleur1">
+									<center>
+										<i class="fa fa-phone couleur1"> </i>
+									</center>
+								</div>
+								<div class="wrimagecard-topimage_title">
+									<h4>
+										Rendez-vous par téléphone
+										<div class="pull-right badge" id="WrForms"></div>
+									</h4>
+								</div>
+
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<footer th:include="layouts/include :: footer" class="bg-inverse" id="footer"></footer>
+   	
+	<script src="js/particles.js"></script>
+  	<script src="js/particlesConfig.js"></script>
+</body>
+</html>

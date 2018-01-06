@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>EyeNeed</title>
+	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+	<script src="js/jquery-3.1.1.min.js" charset="utf-8"></script>
+	<link href="lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<link href="css/style_particule.css" rel="stylesheet"/>
+	<link href="css/accueil.css" rel="stylesheet"/>
+	<link href="css/navbar.css" rel="stylesheet"/>
+</head>
+<body>
+	<div id="particles-js">
+		<div class="bringFront">
+
+<!-- 
+			<div class="row">
+				<div class="container body" id="navHeader">
+					<div class="top_nav col-lg-12">
+						<div class="nav_menu">
+							<nav>
+								<a href="/home"><img id="logo" src="../static/img/eyeneedLogo.svg" th:src="@{img/eyeneedLogo.svg}"
+									alt="logo" height="70" width="140" class="" /></a>
+								<div class="btn-group nav navbar-nav navbar-right">
+									<button type="button"
+										class="btn btn-secondary dropdown-toggle boutonProfil"
+										data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false" th:text="${utilisateur.login}">Ingrid</button>
+									<div class="dropdown-menu dropdown-menu-right"
+										id="dropdownProfil">
+										<ul>
+											<li><a href="profile">Mon profil</a></li>
+											<li><a href="#">Aide</a></li>
+											<li><a href="logout">Déconnexion</a></li>
+										</ul>
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+ -->
+
+<div  th:include="layouts/include :: headUser"></div>
+
+			<div class="container-fluid">
+				<div class="row rowAccueil">
+					<div class="col-md-4 col-sm-3 col-xs-12">
+						<div class="wrimagecard wrimagecard-topimage">
+							<a href="#lunettes" data-toggle="modal" data-target="#lunettes">
+								<div class="wrimagecard-topimage_header bg-couleur2">
+									<center>
+										<i class="fa fa-eye couleur2"> </i>
+									</center>
+								</div>
+								<div class="wrimagecard-topimage_title">
+									<h4 class="miniText">
+										Rendez-vous Lunettes / Lentilles
+										<div class="pull-right badge" id="WrForms"></div>
+									</h4>
+								</div>
+
+							</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-3 col-xs-12">
+						<div class="wrimagecard wrimagecard-topimage">
+							<a href="#pathologie" data-toggle="modal" data-target="#pathologie">
+								<div class="wrimagecard-topimage_header bg-couleur1">
+									<center>
+										<i class="fa fa-calendar-check-o couleur1"> </i>
+									</center>
+								</div>
+								<div class="wrimagecard-topimage_title">
+									<h4 class="miniText">
+										Consultation de pathologie : Cataracte, Glaucome, DMLA
+										<div class="pull-right badge" id="WrGridSystem"></div>
+									</h4>
+								</div>
+
+							</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-3 col-xs-12">
+						<div class="wrimagecard wrimagecard-topimage">
+							<a href="#chirurgie" data-toggle="modal" data-target="#chirurgie">
+								<div class="wrimagecard-topimage_header bg-couleur2 ">
+									<center>
+										<i class="fa fa-user-md couleur2"> </i>
+									</center>
+								</div>
+								<div class="wrimagecard-topimage_title">
+									<h4 class="miniText">
+										Chirurgie de la vision
+										<div class="pull-right badge" id="WrInformation"></div>
+									</h4>
+								</div>
+
+							</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-3 col-xs-12">
+						<div class="wrimagecard wrimagecard-topimage">
+							<a href="#examen" data-toggle="modal" data-target="#examen">
+								<div class="wrimagecard-topimage_header bg-couleur1">
+									<center>
+										<i class="fa fa-calendar couleur1"> </i>
+									</center>
+								</div>
+								<div class="wrimagecard-topimage_title">
+									<h4 class="miniText">
+										Planifier un examen complémentaire (OCT, Champ visuel)
+										<div class="pull-right badge" id="WrNavigation"></div>
+									</h4>
+								</div>
+
+							</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-3 col-xs-12">
+						<div class="wrimagecard wrimagecard-topimage">
+							<a href="#controle" data-toggle="modal" data-target="#controle">
+								<div class="wrimagecard-topimage_header bg-couleur2">
+									<center>
+										<i class="fa fa-low-vision couleur2"></i>
+									</center>
+								</div>
+								<div class="wrimagecard-topimage_title">
+									<h4 class="miniText">
+										Rendez-vous de contrôle  
+										<div class="pull-right badge" id="WrThemesIcons"></div>
+									</h4>
+								</div>
+							</a>
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-3 col-xs-12">
+						<div class="wrimagecard wrimagecard-topimage">
+							<a href="#fondoeil" data-toggle="modal" data-target="#fondoeil">
+								<div class="wrimagecard-topimage_header bg-couleur1">
+									<center>
+										<i class="fa fa-stethoscope couleur1"></i>
+									</center>
+								</div>
+								<div class="wrimagecard-topimage_title">
+									<h4 class="miniText">
+										Fond d'oeil pour diabétique
+										<div class="pull-right badge" id="WrThemesIcons"></div>
+									</h4>
+								</div>
+							</a>
+						</div>
+					</div>
+					
+					
+				</div>
+				<a href="/home"><button type="button" class="btn btn-outline-secondary btnRetour">Retour</button></a>
+			</div>
+
+		</div>
+
+	</div>
+	
+<div class="modal fade" id="lunettes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Renouvellement lunettes/lentilles</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<h6> Confirmation renouvellement : </h6>
+		  <div class="row">
+		  	<div class="col-lg-2"></div>
+			<a href="/saveRdvLunettes" class="btn btn-md btn-primary btnConf col-lg-3">Lunettes</a>
+		  	<div class="col-lg-2"></div>			
+			<a href="/saveRdvLentilles" class="btn btn-md btn-primary btnConf col-lg-3">Lentilles</a>
+			<div class="col-lg-2"></div>
+		  </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pathologie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Consultation de pathologie : Cataracte, Glaucome, DMLA</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirmez-vous votre demande de rendez-vous pour une consultation de pathologie : Cataracte, Glaucome, DMLA ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <a href="/saveRdvPathologie"><button type="button" class="btn btn-primary">Confirmer</button></a>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+<div class="modal fade" id="chirurgie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chirurgie de la vision</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirmez-vous votre demande de rendez-vous pour une chirurgie de la vision ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <a href="/saveRdvChirurgie"><button type="button" class="btn btn-primary">Confirmer</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="examen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Examen complémentaire (OCT, Champ visuel)</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">        
+       <h6> Confirmation de rendez-vous pour un : </h6>
+		  <div class="row">
+		  	<div class="col-lg-1"></div>
+			<a href="/saveRdvExamenOCT" class="btn btn-md btn-primary btnConf col-lg-4">OCT</a>
+		  	<div class="col-lg-2"></div>			
+			<a href="/saveRdvExamenCV" class="btn btn-md btn-primary btnConf col-lg-4">Champs visuel</a>
+			<div class="col-lg-1"></div>
+			<div class="col-lg-3"></div>
+			<a href="/saveRdvExamen2" class="btn btn-md btn-primary btnConf2 col-lg-6">OCT et Champs visuel</a>
+			<div class="col-lg-1"></div>
+		  </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="controle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Rendez-vous de contrôle </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirmez-vous votre demande de rendez-vous pour un rendez-vous de contrôle  ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <a href="/saveRdvControle"><button type="button" class="btn btn-primary">Confirmer</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="fondoeil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Fond d'oeil pour diabétique</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirmez-vous votre demande de rendez-vous pour un fond d'oeil ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <a href="/saveRdvFondOeil"><button type="button" class="btn btn-primary">Confirmer</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+	 <footer th:include="layouts/include :: footer" class="bg-inverse" id="footer"> </footer>
+	 <footer>
+		<script src="js/particles.js"></script>
+ 	 	<script src="js/particlesConfig.js"></script>
+	</footer>
+
+</body>
+</html>

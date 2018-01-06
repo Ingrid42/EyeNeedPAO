@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <title>Tableau de bord</title>
+  <link href="lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  	<script src="js/jquery-3.1.1.min.js" th:href="@{js/jquery-3.1.1.min.js}" charset="utf-8"></script>
+  <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<!--   <link href="../static/css/font-awesome.min.css" rel="stylesheet" th:href="@{css/font-awesome.min.css}"/> -->
+  <link href="../static/css/style_particule.css" rel="stylesheet" th:href="@{css/style_particule.css}"/>
+  <link href="../static/css/tableauDeBord.css" rel="stylesheet" th:href="@{css/tableauDeBord.css}"/>
+  <link href="../static/css/accueil.css" rel="stylesheet" th:href="@{css/accueil.css}"/>
+  <script src="../static/js/statistiques.js" charset="utf-8" th:src="@{js/statistiques.js}"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <link href="css/navbar.css" rel="stylesheet"/>
+  <link href="css/index.css" rel="stylesheet"/>
+  <script type="text/javascript" th:inline="javascript">
+  /*<![CDATA[*/
+	var donneesNouveaux=[];  
+	var donneesQuestionnaire=[];  
+	var donneesConsultations=[];
+	var donneesFondOeil=[];
+	var donneesLunettes=[];
+	var donneesControle=[];
+	var donneesChirurgie=[];
+	var donneesVisites=[];
+	var labelVisites=[];
+	var theList = [[${indicateurs}]]
+	var debut=0;
+	if(theList.length>30)debut=theList.length-30;//n'affiche de 30jours
+	for (i = 0; i < theList.length; i++) {
+			donneesQuestionnaire.push(theList[i].questionnaires);
+			donneesNouveaux.push(theList[i].connectes);
+		  	donneesVisites.push(theList[i].visites);
+		  	 donneesConsultations.push(theList[i].consultations);
+			 donneesFondOeil.push(theList[i].fondOeil);
+			 donneesLunettes.push(theList[i].lunettes);
+			 donneesControle.push(theList[i].controle);
+			 donneesChirurgie.push(theList[i].chirurgie);
+			 labelVisites.push(theList[i].date);
+  }
+	theList = [[${trancheAge}]]
+	var donneesAge=[];
+	for (i = 0; i < theList.length; i++) {
+		donneesAge.push(theList[i]);
+	}
+	theList = [[${villes}]]
+	var labelVilles=[];
+	var donneesVilles=[];
+	var obj=[];
+	for (i = 0; i < theList.length; i++) {
+		obj=theList[i];
+		labelVilles.push(obj[0]);
+		donneesVilles.push(obj[1]);
+	}
+	theList = [[${departements}]]
+	var donneesDepartements=[];
+	var labelDepartements=[];
+	for (i = 0; i < theList.length; i++) {
+		obj=theList[i];
+		labelDepartements.push('' + obj[0]);
+		donneesDepartements.push(obj[1]);
+		
+	}
+	
+	theList = [[${villesLunettes}]]
+	var labelVillesLunettes=[];
+	var donneesVillesLunettes=[];
+	 obj=[];
+	for (i = 0; i < theList.length; i++) {
+		obj=theList[i];
+		labelVillesLunettes.push(obj[0]);
+		donneesVillesLunettes.push(obj[1]);
+		
+	}
+	
+	theList = [[${villesConsultations}]]
+	var labelVillesConsultations=[];
+	var donneesVillesConsultations=[];
+	 obj=[];
+	for (i = 0; i < theList.length; i++) {
+		obj=theList[i];
+		labelVillesConsultations.push(obj[0]);
+		donneesVillesConsultations.push(obj[1]);
+	}
+	
+	theList = [[${villesChirurgie}]]
+	var labelVillesChirurgie=[];
+	var donneesVillesChirurgie=[];
+	 obj=[];
+	for (i = 0; i < theList.length; i++) {
+		obj=theList[i];
+		labelVillesChirurgie.push(obj[0]);
+		donneesVillesChirurgie.push(obj[1]);
+	}
+	
+	theList = [[${villesExamens}]]
+	var labelVillesExamens=[];
+	var donneesVillesExamens=[];
+	 obj=[];
+	for (i = 0; i < theList.length; i++) {
+		obj=theList[i];
+		labelVillesExamens.push(obj[0]);
+		donneesVillesExamens.push(obj[1]);
+	}
+	
+	theList = [[${villesControle}]]
+	var labelVillesControle=[];
+	var donneesVillesControle=[];
+	 obj=[];
+	for (i = 0; i < theList.length; i++) {
+		obj=theList[i];
+		labelVillesControle.push(obj[0]);
+		donneesVillesControle.push(obj[1]);
+	}
+	
+	theList = [[${villesFondOeil}]]
+	var labelVillesFondOeil=[];
+	var donneesVillesFondOeil=[];
+	 obj=[];
+	for (i = 0; i < theList.length; i++) {
+		obj=theList[i];
+		labelVillesFondOeil.push(obj[0]);
+		donneesVillesFondOeil.push(obj[1]);
+	}
+	
+  /*]]>*/
+  </script>
+</head>
+<body>
+<!-- <h6 th:text="${indicateurs.visites[0]}"></h6> -->
+<div id="particles-js">
+<div class="bringFront">
+  <!-- Navbar -->
+<div th:include="layouts/includeAdmin :: headerAdmin">
+		</div>
+<div class="row" >
+</div>
+ <!-- Content page -->
+  <div class="right_col container" role="main">
+<!-- Fréquentation -->
+    <div class="row"> 
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="dashboard_graph x_panel fixed_height_row1">
+          <div class="row x_title">
+            <div class="col-md-7">
+              <h2>Nombre de visites quotidiennes</h2>
+            </div>
+            <div class="col-md-5">
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class=" row x_content">
+            <!-- graph des visites quotidiennes -->
+            <div class="col-md-7">
+              <canvas id="line-chart" width="900" height="790"></canvas>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+	<div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_row1 overflow_hidden">
+          <div class="row x_title">
+            <div class="col-md-11">
+              <h2>Tranche d'age</h2><h8 th:text="'('+ ${nbreUtilisateurs} + ' utilisateurs)'">Tranche d'age</h8>
+            </div>
+            <div class="col-md-1">
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+              </ul>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">     <!-- tout le contenu retractable doit se trouver dans la balise div x_content -->
+            
+            <h6>Répartition des utilisateurs par leur age</h6>
+            <table class="" style="width:100%">
+              <tr>
+                <th style="width:37%;"></th>
+                <th>
+                  <tr>
+                    <td>
+                      <canvas class="canvasAge" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square pink"></i>moins de 30ans</p>
+                          </td>
+                          <td th:text="${trancheAge[0]} + '%'">30%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square orange"></i>de 31 à 42ans</p>
+                          </td>
+                          <td th:text="${trancheAge[1]} + '%'">10%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i>de 43 à 60ans</p>
+                          </td>
+                          <td th:text="${trancheAge[2]} + '%'">20%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square yellow"></i>plus de 60ans</p>
+                          </td>
+                          <td th:text="${trancheAge[3]} + '%'">15%</td>
+                        </tr>
+<!--                         <tr> -->
+<!--                           <td> -->
+<!--                             <p><i class="fa fa-square purple"></i>Urgence</p> -->
+<!--                           </td> -->
+<!--                           <td th:text="${trancheAge[4]} + '%'">30%</td> -->
+<!--                         </tr> -->
+                      </table>
+                    </td>
+                  </tr>
+                 </th>
+                 </tr>
+                </table>
+                <br/>
+                <h8>La durée de réponse moyenne au questionnaire est <b><span th:text="${dureeQuestionnaire}"></span></b>(hh:mm:ss)</h8>
+              </div>
+            </div>
+          </div>
+        </div>
+
+ <!-- Rendez-vous -->
+    <div class="row"> 
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="dashboard_graph x_panel fixed_height_row1">
+          <div class="row x_title">
+            <div class="col-md-7">
+              <h2>Nombre de rdv quotidiennes</h2>
+            </div>
+            <div class="col-md-5">
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class=" row x_content">
+            <!-- graph des visites quotidiennes -->
+            <div class="col-md-7">
+              <canvas id="line-rdv" width="800" height="790"></canvas>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_row1 overflow_hidden">
+          <div class="row x_title">
+            <div class="col-md-11">
+              <h5>Répartition géographique des utilisateurs</h5>
+            </div>
+            <div class="col-md-1">
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+              </ul>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">     <!-- tout le contenu retractable doit se trouver dans la balise div x_content -->
+            
+            <h6>Répartition par département</h6>
+            <table class="" style="width:100%">
+              <tr>
+                <th style="width:37%;"></th>
+                <th>
+                  <tr>
+                    <td>
+                      <canvas class="canvasDepartements" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square pink"></i><span id="departementsLabel0"></span></p>
+                          </td>
+                          <td id="departements0"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square orange"></i><span id="departementsLabel1"></span></p>
+                          </td>
+                          <td id="departements1"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i><span id="departementsLabel2"></span></p>
+                          </td>
+                          <td id="departements2"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square yellow"></i><span id="departementsLabel3"></span></p>
+                          </td>
+                          <td id="departements3"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i><span id="departementsLabel4"></span></p>
+                          </td>
+                          <td id="departements4"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                 </th>
+                 </tr>
+                </table>
+                
+                 <h6>Répartition par Villes(Code postal)</h6>
+            <table class="" style="width:100%">
+              <tr>
+                <th style="width:37%;"></th>
+                <th>
+                  <tr>
+                    <td>
+                      <canvas class="canvasVilles" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square pink"></i><span id="villesLabel0"></span></p>
+                          </td>
+                          <td id="villes0"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square orange"></i><span id="villesLabel1"></span></p>
+                          </td>
+                          <td id="villes1"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i><span id="villesLabel2"></span></p>
+                          </td>
+                          <td id="villes2"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square yellow"></i><span id="villesLabel3"></span></p>
+                          </td>
+                          <td id="villes3"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i><span id="villesLabel4"></span></p>
+                          </td>
+                          <td id="villes4"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                 </th>
+                 </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>       
+<!-- Rendez-vous par villes-->
+    <div class="row"> 
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel tile fixed_height_row1 overflow_hidden">
+          <div class="row x_title">
+            <div class="col-md-11">
+              <h5>Répartition géographique des RDV</h5>
+              </div>
+              </div>
+              </div>
+              </div>
+              
+
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_row1 overflow_hidden">
+          
+          <div class="x_content">     <!-- tout le contenu retractable doit se trouver dans la balise div x_content -->
+            
+            
+                
+                 <h6>Lunettes par Villes(Code postal)</h6>
+            <table class="" style="width:100%">
+              <tr>
+                <th style="width:37%;"></th>
+                <th>
+                  <tr>
+                    <td>
+                      <canvas class="canvasVillesLunettes" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square pink"></i><span id="villesLunettesLabel0"></span></p>
+                          </td>
+                          <td id="villesLunettes0"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square orange"></i><span id="villesLunettesLabel1"></span></p>
+                          </td>
+                          <td id="villesLunettes1"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i><span id="villesLunettesLabel2"></span></p>
+                          </td>
+                          <td id="villesLunettes2"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square yellow"></i><span id="villesLunettesLabel3"></span></p>
+                          </td>
+                          <td id="villesLunettes3"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i><span id="villesLunettesLabel4"></span></p>
+                          </td>
+                          <td id="villesLunettes4"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                 </th>
+                 </tr>
+                </table>
+                </div>
+                </div>
+                </div>
+                
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_row1 overflow_hidden">
+          
+          <div class="x_content">     <!-- tout le contenu retractable doit se trouver dans la balise div x_content -->             
+                    <h6>Consultations par Villes(Code postal)</h6>
+            <table class="" style="width:100%">
+              <tr>
+                <th style="width:37%;"></th>
+                <th>
+                  <tr>
+                    <td>
+                      <canvas class="canvasVillesConsultations" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square pink"></i><span id="villesConsultationsLabel0"></span></p>
+                          </td>
+                          <td id="villesConsultations0"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square orange"></i><span id="villesConsultationsLabel1"></span></p>
+                          </td>
+                          <td id="villesConsultations1"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i><span id="villesConsultationsLabel2"></span></p>
+                          </td>
+                          <td id="villesConsultations2"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square yellow"></i><span id="villesConsultationsLabel3"></span></p>
+                          </td>
+                          <td id="villesConsultations3"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i><span id="villesConsultationsLabel4"></span></p>
+                          </td>
+                          <td id="villesConsultations4"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                 </th>
+                 </tr>
+                </table>
+        </div>
+        </div>
+        </div>
+        
+        
+         <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_row1 overflow_hidden">
+          
+          <div class="x_content">     <!-- tout le contenu retractable doit se trouver dans la balise div x_content -->
+         <h6>Chirurgie par Villes(Code postal)</h6>
+            <table class="" style="width:100%">
+              <tr>
+                <th style="width:37%;"></th>
+                <th>
+                  <tr>
+                    <td>
+                      <canvas class="canvasVillesChirurgie" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square pink"></i><span id="villesChirurgieLabel0"></span></p>
+                          </td>
+                          <td id="villesChirurgie0"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square orange"></i><span id="villesChirurgieLabel1"></span></p>
+                          </td>
+                          <td id="villesChirurgie1"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i><span id="villesChirurgieLabel2"></span></p>
+                          </td>
+                          <td id="villesChirurgie2"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square yellow"></i><span id="villesChirurgieLabel3"></span></p>
+                          </td>
+                          <td id="villesChirurgie3"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i><span id="villesChirurgieLabel4"></span></p>
+                          </td>
+                          <td id="villesChirurgie4"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                 </th>
+                 </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div> 
+        
+        <div class="row">
+        
+        <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_row1 overflow_hidden">
+          
+          <div class="x_content">     <!-- tout le contenu retractable doit se trouver dans la balise div x_content -->
+            
+            
+                
+                 <h6>Examens par Villes(Code postal)</h6>
+            <table class="" style="width:100%">
+              <tr>
+                <th style="width:37%;"></th>
+                <th>
+                  <tr>
+                    <td>
+                      <canvas class="canvasVillesExamens" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square pink"></i><span id="villesExamensLabel0"></span></p>
+                          </td>
+                          <td id="villesExamens0"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square orange"></i><span id="villesExamensLabel1"></span></p>
+                          </td>
+                          <td id="villesExamens1"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i><span id="villesExamensLabel2"></span></p>
+                          </td>
+                          <td id="villesExamens2"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square yellow"></i><span id="villesExamensLabel3"></span></p>
+                          </td>
+                          <td id="villesExamens3"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i><span id="villesExamensLabel4"></span></p>
+                          </td>
+                          <td id="villesExamens4"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                 </th>
+                 </tr>
+                </table>
+                </div>
+                </div>
+                </div>
+                
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_row1 overflow_hidden">
+          
+          <div class="x_content">     <!-- tout le contenu retractable doit se trouver dans la balise div x_content -->             
+                    <h6>Contrôle par Villes(Code postal)</h6>
+            <table class="" style="width:100%">
+              <tr>
+                <th style="width:37%;"></th>
+                <th>
+                  <tr>
+                    <td>
+                      <canvas class="canvasVillesControle" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square pink"></i><span id="villesControleLabel0"></span></p>
+                          </td>
+                          <td id="villesControle0"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square orange"></i><span id="villesControleLabel1"></span></p>
+                          </td>
+                          <td id="villesControle1"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i><span id="villesControleLabel2"></span></p>
+                          </td>
+                          <td id="villesControle2"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square yellow"></i><span id="villesControleLabel3"></span></p>
+                          </td>
+                          <td id="villesControle3"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i><span id="villesControleLabel4"></span></p>
+                          </td>
+                          <td id="villesControle4"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                 </th>
+                 </tr>
+                </table>
+        </div>
+        </div>
+        </div>
+        
+        
+         <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_row1 overflow_hidden">
+          
+          <div class="x_content">     <!-- tout le contenu retractable doit se trouver dans la balise div x_content -->
+         <h6>Fond Oeil par Villes(Code postal)</h6>
+            <table class="" style="width:100%">
+              <tr>
+                <th style="width:37%;"></th>
+                <th>
+                  <tr>
+                    <td>
+                      <canvas class="canvasVillesFondOeil" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square pink"></i><span id="villesFondOeilLabel0"></span></p>
+                          </td>
+                          <td id="villesFondOeil0"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square orange"></i><span id="villesFondOeilLabel1"></span></p>
+                          </td>
+                          <td id="villesFondOeil1"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i><span id="villesFondOeilLabel2"></span></p>
+                          </td>
+                          <td id="villesFondOeil2"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square yellow"></i><span id="villesFondOeilLabel3"></span></p>
+                          </td>
+                          <td id="villesFondOeil3"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i><span id="villesFondOeilLabel4"></span></p>
+                          </td>
+                          <td id="villesFondOeil4"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                 </th>
+                 </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+
+<!-- fin Rendez-vous par villes-->
+
+
+      </div>
+      <!-- /Content page -->
+	</div>
+</div>
+
+<div class="modal fade" id="rdv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Stats de rdv</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		
+		  <div class="row">
+		  	<h6 th:text="'Lunettes:' + ${indicateur.lunettes}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Consultations:' + ${indicateur.consultations}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Chirurgie:' + ${indicateur.chirurgie}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Examens:' + ${indicateur.examens}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Controle:' + ${indicateur.controle}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Fond d oeil:' + ${indicateur.fondOeil}"> Confirmation renouvellement : </h6>
+		  </div>
+		   
+		 
+      </div>
+<!--       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary"><a href="/saveRdvLunettes">Confirmer</a></button>
+      </div> -->
+    </div>
+  </div>
+</div>
+      <footer>
+<!-- 		<script src="js/particles.js"></script> -->
+<!-- 		<script src="js/particlesConfig.js"></script> -->
+
+        <!-- Chart donuts -->
+        <script src="js/Chart.min.js" charset="utf-8" th:src="@{js/Chart.min.js}"></script>
+
+        <script>
+	        function myFunction() {
+	          console.log("test");
+	          document.getElementById("myDropdown").classList.toggle("show");
+	        }
+        </script>
+      </footer>
+    </body>
+    </html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <div th:fragment="module1">
+   <article th:id="|${p.position}|" class="container box style1 right">
+		<div >
+
+		<div class="container">
+		<div id="box_questionnaire">
+        	<div class="list-group" >
+        	
+        		<h6 th:text="'Question ' + ${p.position+1} + ' / ' + ${#lists.size(ListeModules)}">Question 2 /6</h6>
+        		<h2 th:text="${p.nom}">Antécédents médicaux ophtalmologiques</h2>
+        	</div>
+
+          <div class="panel panel-primary " th:id="'module'+${p.position +1}">
+            <div class="panel-body">
+                <div class="form-group question" th:each="q:${p.questions}"> <!--/* boucle Question Niveau1*/-->
+                  <h4 class="panel-title" th:text="${q.texte}"><i class="btnDebutQuestion" aria-hidden="true"></i>Etes-vous suivis pour un problème ophtalmologique1 ?</h4>
+				<!--/* Module avec une question oui/non et une sous question avec des choix (dans notre cas Antécédent ophtalmologique*/-->
+				<th:block th:if="${#lists.size(q.reponses)} == 2 AND ${#lists.size(q.reponses[0].sousQuestions)} == 1">
+					<div class ="row">
+						<th:block th:each="r:${q.reponses}" ><!--/* Bouton  réponses Niveau1 */-->
+							<span class="col-lg-6 col-xs-12">
+							<label th:for="${#strings.concat(r.id_reponse, '_reponse')}" class="labelInButton" th:style="|width:${(maxWidth[q.id_question] * 10)+50}px|" th:id="${#strings.concat('labelInButton',r.id_reponse)}"  >
+					       	<input th:id="${#strings.concat(r.id_reponse, '_reponse')}" th:type="${not q.multiple}? radio : checkbox" th:field="*{reponses[__${q.reponses[0].id_reponse}__].reponse.id_reponse}" th:value="${r.id_reponse}" th:onchange="'javascript:selectQuestion('+ ${r.id_reponse} +')'" class="radioInButton" th:text="${r.texte}"/>
+					       	</label>
+					       	</span>
+						</th:block> 
+			       	</div>
+			    
+			       	
+			       	<th:block th:each="r:${q.reponses}" ><!--/* Panneaux des sousQuestion des réponses Niveau1 */-->
+			       	<!--/*  Reponse NIviveau1 */-->
+			    	<div class="question" th:id="${r.id_reponse} + '_sousQuestion'" th:if="${#lists.size(r.sousQuestions)} > 0">
+			    		
+			    		<th:block th:each="sq:${r.sousQuestions}" ><!--/*  Liste des Sous Question Niviveau2 */-->
+			    		<div class ="row row_question">
+				    		<h4 class="control-label col-lg-12 col-xs-12" th:text="${sq.texte}"> Quel(s) problème(s) ophtalmologique(s) avez-vous1 ?</h4>
+				    	</div>
+				    	<div class =" row_question" style="text-align: left;">	
+				    		<th:block th:each="sr:${sq.reponses}" ><!--/*  Bouton de chaque Sous Question Niviveau2 */-->
+				    			<span class="col-lg-2 col-xs-12">
+				    			<label th:for="${sr.id_reponse} + '_reponse'" class="labelInButton"   th:style="|width:${(maxWidth[sq.id_question] * 10)+50}px|" th:id="'labelInButton'+ ${sr.id_reponse}" > 
+				    			<input th:id="${sr.id_reponse} + '_reponse'"  th:value="${sr.id_reponse}" th:field="*{reponses[__${sr.id_reponse}__].reponse.id_reponse}" type="checkbox"  th:onchange="'javascript:selectQuestionEffacable(' + ${sr.id_reponse} +');changeValue('+${sr.id_reponse}+')'" class="radioInButton" th:text="${sr.texte}"/>
+				    			</label>
+				    			</span>
+				    		</th:block>
+				    	</div>
+				    		<th:block th:each="sr:${sq.reponses}" ><!--/*  Panneaux de chaque Sous Question Niviveau2 */-->
+				    		<!--/*  Pour chaque réponse */-->
+					    		<div th:if="${#lists.size(sr.sousQuestions)} > 0" class="question champEffacable" th:id="${sr.id_reponse} + '_sousQuestion'" style="margin : 20px;">
+					    			<div class ="row row_question" >
+					    				<h5  class="col-lg-12 col-xs-12" th:text="${sr.texte}" style="margin-top: 20px;">Titre Panneau : Cornée</h5><!--/*  Titre du panneau*/-->
+		 			    			</div>
+		 			    			<th:block th:each="ssq:${sr.sousQuestions}" ><!--/*  Liste chaque sousQuestion NIveau 3*/-->
+					    			<div class ="row row_question" style="text-align: right;">
+					    					<!--/*  Affichage de chaque Sous Question Niviveau2 */-->
+					    					<th:block th:if="${#lists.size(ssq.reponses)} > 1">
+								    			<label th:for="${ssq.id_question} + '_reponse'" class="control-label col-lg-5 col-xs-12" th:text="${ssq.texte}"> SousQuestion: Quel problème?</label>
+								    			<div class="col-lg-7 col-xs-12" style="text-align: left;margin-top: -6px;margin-bottom: 6px;">
+								    			<th:block th:each="ssr:${ssq.reponses}" >
+								    				<label th:for="${ssr.id_reponse} + '_reponse'"  th:text="${ssr.texte}"> Réponse: Greffe</label>
+								    				<th:block th:if="${ssr.type}!=1 AND ${ssq.multiple}">
+													<input th:id="${ssr.id_reponse} + '_reponse'"   th:field="*{reponses[__${ssr.id_reponse}__].reponse.id_reponse}" th:value="${ssr.id_reponse}" type="checkbox" th:onchange="'javascript:selectQuestionEffacable(' + ${ssr.id_reponse} +');changeValue('+ ${ssr.id_reponse}+')'" class="option-input "/>
+								    				
+								    				</th:block>
+								    				<th:block th:if="${ssr.type}!=1 AND ! ${ssq.multiple} ">
+													<input th:id="${ssq.id_question} + '_reponse_radio'"  th:name="${ssq.id_question} + '_reponse_radio'" th:value="${ssr.id_reponse}" type="radio" th:onchange="'changeValueRadio('+${ssq.id_question}+','+ ${ssr.id_reponse}+');javascript:selectQuestionEffacable(' + ${ssr.id_reponse} +');'" class="option-input radio"/>
+								    				<input th:id="${ssr.id_reponse} + '_reponse'" type="hidden" th:field="*{reponses[__${ssr.id_reponse}__].reponse.id_reponse}" value=""   />
+								    				</th:block>
+								    				<th:block th:if="${ssr.type}==1"><!--/*  Si réponse type texte */-->
+								    				<input th:id="${ssr.id_reponse} + '_reponse_text'"   class="reponseText" type="text" th:field="*{reponses[__${ssr.id_reponse}__].reponse.texte}" value=""  th:onchange="'javascript:changeValueHidden('+${ssr.id_reponse}+');'" />
+								    				<input th:id="${ssr.id_reponse} + '_reponse'" type="hidden" th:field="*{reponses[__${ssr.id_reponse}__].reponse.id_reponse}" value=""   />
+								    				</th:block>
+								    				
+								    			</th:block>
+							    				</div>
+							    				
+							    				
+							    			</th:block>
+							    			<th:block th:if="${#lists.size(ssq.reponses)} == 1 AND ${ssq.reponses[0].type} != 1 ">
+								    			<label th:for="${ssq.id_question} + '_reponse'" class="control-label col-lg-5 col-xs-12" th:text="${ssq.texte}"> SousQuestion: Quel problème?</label>
+								    			<input th:id="${ssq.reponses[0].id_reponse} + '_reponse'" type="checkbox" th:field="*{reponses[__${ssq.reponses[0].id_reponse}__].reponse.id_reponse}" value=""  th:onchange="'javascript:selectQuestionEffacable(' + ${ssq.reponses[0].id_reponse} +');changeValue('+${ssq.reponses[0].id_reponse}+')'" class="option-input radio"/>
+								    		</th:block>
+								    		<!--/*  SI TYPE TEXTE */-->
+								    		<th:block th:if="${#lists.size(ssq.reponses)} == 1 AND ${ssq.reponses[0].type} == 1">
+								    			<label th:for="${ssq.id_question} + '_reponse'" class="control-label col-lg-5 col-xs-12" th:text="${ssq.texte}"> SousQuestion: Quel problème?</label>
+								    				<input th:id="${ssq.reponses[0].id_reponse} + '_reponse_text'" class="reponseText" type="text" th:field="*{reponses[__${ssq.reponses[0].id_reponse}__].reponse.texte}" value=""  th:onchange="'javascript:changeValueHidden('+${ssq.reponses[0].id_reponse}+');'" />
+								    				<input th:id="${ssq.reponses[0].id_reponse} + '_reponse'" type="hidden" th:field="*{reponses[__${ssq.reponses[0].id_reponse}__].reponse.id_reponse}" value=""   />
+								    		
+								    		</th:block>
+							    		
+									</div>
+									
+									
+									</th:block>
+								</div>
+								<th:block th:each="ssq:${sr.sousQuestions}" >
+								<th:block th:include="layouts/includeQuestionnaire :: AfficheSousReponse(sousQuestion=${ssq})"></th:block>
+								</th:block>
+				    		</th:block>
+			    		</th:block>
+					</div>
+			    	</th:block> <!--/* boucle sousQuestions */-->
+				</th:block>
+				<!--/* Module avec une question oui/non et plusieurs sous question avec des choix (dans notre cas Antécédent chirurgicaux*/-->
+				<th:block th:if="${#lists.size(q.reponses)} == 2 AND ( ${#lists.size(q.reponses[0].sousQuestions)} > 1 OR ${#lists.size(q.reponses[1].sousQuestions)} )"> 
+					<div class ="row">
+						<th:block th:each="r:${q.reponses}" >
+							<span class="col-lg-6 col-xs-12">
+							<label th:for="${#strings.concat(r.id_reponse, '_reponse')}" class="labelInButton" th:style="|width:${(maxWidth[q.id_question] * 10)+40}px|" th:id="${#strings.concat('labelInButton',r.id_reponse)}"  >
+					       	<input th:id="${#strings.concat(r.id_reponse, '_reponse')}" th:type="${not q.multiple}? radio : checkbox" th:field="*{reponses[__${q.reponses[0].id_reponse}__].reponse.id_reponse}" th:value="${r.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+ ${r.id_reponse} +')'" class="radioInButton" th:text="${r.texte}"/>
+					       	</label>
+					       	</span>
+						</th:block> <!--/* boucle réponses */-->
+			       	</div>
+			    
+			       	
+			       	<th:block th:each="r:${q.reponses}" >
+			    	<div class="question" th:id="${r.id_reponse} + '_sousQuestion'" th:if="${#lists.size(r.sousQuestions)} > 0">
+			    		<!--/*  SOUS PARTIE DMLA */-->
+			    		<th:block th:each="sq:${r.sousQuestions}" >
+			    		<div class ="row row_question">
+				    		<h4 class="control-label col-lg-12 col-xs-12" style="padding-top: 30px;" th:text="${sq.texte}"> Quel(s) problème(s) ophtalmologique(s) avez-vous1 ?</h4>
+				    	</div>
+				    	<div class =" row_question" style="padding-bottom: 30px;">	
+				    		<th:block th:each="sr:${sq.reponses}" >
+				    			<span class="col-lg-2 col-xs-12">
+				    			<label th:for="${sr.id_reponse} + '_reponse'"    th:id="'labelInButton'+ ${sr.id_reponse}" th:text="${sr.texte}"></label> 
+				    			<input th:if="${sr.type} != 3" th:id="${sr.id_reponse} + '_reponse'" style="margin-left: 20px;" class="option-input checkbox" value="" th:onchange="'changeValue('+${sr.id_reponse}+')'" th:field="*{reponses[__${sr.id_reponse}__].reponse.id_reponse}" type="checkbox"  />
+				    			<input th:if="${sr.type} ==3" th:id="${sr.id_reponse} + '_reponse_text'"  value="coucou" th:onchange="'changeValueHidden('+${sr.id_reponse}+')'" th:field="*{reponses[__${sr.id_reponse}__].reponse.texte}" type="text"  />
+				    			<input th:id="${sr.id_reponse} + '_reponse'" type="hidden" th:field="*{reponses[__${sr.id_reponse}__].reponse.id_reponse}" value=""   />
+								    		
+				    			</span>
+				    		</th:block>
+				    	</div>
+				    		
+			    		</th:block>
+					</div>
+			    	</th:block> <!--/* boucle sousQuestions */-->
+				</th:block>
+				
+				<!--/* Module avec  plusieurs  réponse à la première question par exmple (dans notre cas Antécédent généraux,Atécédent familiaux*/-->
+				<th:block th:if="${#lists.size(q.reponses)} > 2 ">
+				<div class ="row">
+						<th:block th:each="r:${q.reponses}" >
+							<span class="col-lg-6 col-xs-12">
+							<label th:for="${#strings.concat(r.id_reponse, '_reponse')}" class="labelInButton" th:style="|width:${(maxWidth[q.id_question] * 10)+40}px|" th:id="${#strings.concat('labelInButton',r.id_reponse)}"  >
+					       	<input th:id="${#strings.concat(r.id_reponse, '_reponse')}" th:type="${not q.multiple}? radio : checkbox" th:field="*{reponses[__${q.reponses[0].id_reponse}__].reponse.id_reponse}" th:value="${r.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+ ${r.id_reponse} +')'" class="radioInButton" th:text="${r.texte}"/>
+					       	</label>
+					       	</span>
+						</th:block> <!--/* boucle réponses */-->
+			       	</div>
+				<th:block th:each="r:${q.reponses}" >
+				    		<!--/*  SOUS PARTIE DMLA */-->
+					    		<div class="question champEffacable" th:id="${r.id_reponse} + '_sousQuestion'" style="padding: 20px;margin-top: 20px;">
+					    			<div class ="row row_question" style="margin-top: 20px;">
+					    				<h5  class="col-lg-12 col-xs-12" th:text="${r.texte}">Cornée</h5>
+		 			    			</div>
+					    			
+					    				<th:block th:each="sq:${r.sousQuestions}" >
+					    				<div class ="row row_question align-items-start"  style="margin-bottom: 20px;">
+					    					<th:block th:if="${#lists.size(sq.reponses)} > 1">
+								    			<label th:for="${sq.id_question} + '_reponse'" class="control-label col col-xs-12" th:text="${sq.texte}"> Greffe</label>
+								    			<th:block th:each="sr:${sq.reponses}" >
+								    			<th:block th:if="! ${(sq.multiple)}">
+								    				<label th:for="${sr.id_reponse} + '_reponse'" class="col col-xs-12" th:text="${sr.texte}"> Coucou</label>
+													<input th:id="${sq.id_question} + '_reponse_radio'" style="margin-bottom: 6px;margin-top: -6px;margin-left: -6px;" th:name="${sq.id_question} + '_reponse_radio'" th:value="${sr.id_reponse}" type="radio" th:onchange="'javascript:selectQuestionEffacable(' + ${sr.id_reponse} +');changeValueRadio('  + ${sq.id_question} + ',' + ${sr.id_reponse} +');'" class="option-input radio"/>
+								    				<input th:id="${sr.id_reponse} + '_reponse'" type="hidden" th:field="*{reponses[__${sq.reponses[0].id_reponse}__].reponse.id_reponse}" value=""   />
+								    			</th:block>
+								    			<th:block th:if="${(sq.multiple)}">
+								    				<label th:for="${sr.id_reponse} + '_reponse'" class="col col-xs-12" th:text="${sr.texte}"> Coucou</label>
+													<input th:id="${sq.id_question} + '_reponse'" style="margin-bottom: 6px;margin-top: -6px;margin-left: -6px;" th:field="*{reponses[__${sr.id_reponse}__].reponse.id_reponse}" th:value="${sr.id_reponse}" type="checkbox" th:onchange="'javascript:selectQuestionEffacable(' + ${sr.id_reponse} +');changeValue('  + ${sq.id_question} + ',' + ${sr.id_reponse} +');'" class="option-input checkbox"/>
+								    				
+								    			</th:block>
+								    			</th:block>
+							    			</th:block>
+							    			<th:block th:if="${#lists.size(sq.reponses)} == 1">
+								    			<label th:for="${sq.id_question} + '_reponse'" class="control-label col col-xs-12" th:text="${sq.texte}"> Greffe</label>
+								    			
+								    				
+													<input type="checkbox" th:onchange="'javascript:changeValueHidden(' + ${sq.reponses[0].id_reponse} +')'" class="option-input radio"/>
+								    				<input  type="hidden" th:id="${sq.reponses[0].id_reponse} + '_reponse'" th:field="*{reponses[__${sq.reponses[0].id_reponse}__].reponse.id_reponse}" value="" />
+							    			</th:block>
+							    			</div>
+							    		</th:block>
+									
+								</div>
+				    		</th:block>
+				
+				
+				
+				</th:block>	
+					
+				</div>
+			</div> 
+        </div>
+
+		<a th:if="${p.position+1} != ${#lists.size(ListeModules) }" th:href="|#${p.position+1}|" class="button style2 scrolly-middle">suivant</a> <!--/* n'affiche pas suivant pour le dernier module */-->
+				
+	</div> 
+  </div>
+  
+</div>
+		</article>	
+		
+</div>
+
+</body>
+</html>

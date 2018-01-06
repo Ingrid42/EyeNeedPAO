@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <title>EyeNeed</title>
+  <script src="js/jquery-3.1.1.min.js" th:href="@{js/jquery-3.1.1.min.js}" charset="utf-8"></script>
+  <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	
+  <link href="../static/lib/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{lib/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+  <link href="../static/css/style_particule.css"  th:href="@{css/style_particule.css}" rel="stylesheet"/>
+  <link href="../static/css/index.css" th:href="@{css/index.css}" rel="stylesheet"/> 
+  <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css" rel="stylesheet"></link>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"></link>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet"></link>
+  <link href="../static/css/accueil.css" th:href="@{css/accueil.css}" rel="stylesheet"/>
+  <link href="../static/css/navbar.css" th:href="@{css/navbar.css}" rel="stylesheet"/>
+
+</head>
+<body>
+  <div id="particles-js">
+    <div class="bringFront">
+
+<!-- top navigation -->
+<div th:include="layouts/includeAdmin :: headerAdmin" >
+		</div>
+			<div class="row" >
+			</div>
+<!-- /top navigation -->
+
+      <div class="container col-xs-12">
+		<div class="row">
+	      <div class="panel panel-primary filterable col-lg-12">
+	        <table class="table table-hover" id="dataRdv">
+	          <thead>
+	            <tr>
+	              
+	              <th class="titreCol">Patient</th>
+	              <th class="titreCol">Date</th>
+	              <th class="titreCol">Code postal</th> 
+	              <th class="titreCol">Mail</th>
+	              <th class="titreCol">Téléphone</th>
+<!-- 	              <th class="titreCol">Ordonnance</th>
+ -->	              <th class="titreCol" width="160px">Type de rendez-vous</th>
+	              <th class="titreCol">Recommandation</th>
+	              <th class="titreCol">Specialiste</th>
+	              <th class="titreCol">Status</th>
+	              <th class="titreCol">Action</th>
+	              
+	            </tr>
+	          </thead>
+
+	          <tbody>
+	          	 <tr th:each="element : ${listeRdv}">
+	                
+	                <td th:text="${element.nom} + ' ' +${element.prenom}">Nom</td>
+	                <td th:text="${#dates.format(element.date, 'dd-MM-yyyy HH:mm')}">Type</td>
+	                <td th:text="${element.codePostal}">CP</td>
+	                <td ><a th:href="'mailto:' + ${element.mail}" th:text="${element.mail}"></a></td>
+	                <td  th:text="${element.tel}">Téléphone</td>
+<!-- 	                <td th:text="${element.ordonnance}">ordonnance</td>
+ -->	                <td th:text="${element.typeRdv}">Type</td>
+	                <td th:text="${element.specialiste}">Recommandation</td>
+	                <td th:text="${element.orientation}">Specialiste</td>
+	                <td ><a   href="javascript:void(0)" data-toggle="modal" data-target="#rdvStatus"  target="_blank" th:text="${element.Status}" th:onclick="'javascript:afficheStatus('+ ${element.id} +')'"></a></td>
+	                <td width="100px" >
+	                <div class="dropdown">
+	                <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   					 Traiter
+  					</button>
+	                	 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<!--             			<a class="dropdown-item" th:href="'rdvMaile/' + ${element.id}"> A été emailé</a> -->
+            			<a class="dropdown-item" th:href="'rdvAttente/' +${element.id}">En attente</a>
+           				<a class="dropdown-item" th:href="'rdvTraite/' +${element.id}">Traité</a>
+            		    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#ajouterSpecialiste" th:onclick="'ajouterSpecialiste(' + ${element.id} + ')'" >Ajouter le spécialiste</a>            		    
+            		    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#ajouterCommentaire" th:onclick="'ajouterCommentaire(' + ${element.id} + ')'" >Ajouter date du rdv</a>
+            		    </div>
+            		 </div>   
+            		</td>
+           		 </tr>	          
+	    	  </tbody>
+	        </table>
+	      </div>
+	     </div>
+    	
+    	
+
+        </div>
+      </div>
+    </div>
+<div class="modal fade" id="rdv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Stats de rdv</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		
+		  <div class="row">
+		  	<h6 th:text="'Lunettes:' + ${indicateur.lunettes}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Consultations:' + ${indicateur.consultations}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Chirurgie:' + ${indicateur.chirurgie}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Examens:' + ${indicateur.examens}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Controle:' + ${indicateur.controle}"> Confirmation renouvellement : </h6>
+		  </div>
+		  <div class="row">
+		  	<h6 th:text="'Fond d oeil:' + ${indicateur.fondOeil}"> Confirmation renouvellement : </h6>
+		  </div>
+		   
+		 
+      </div>
+<!--       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary"><a href="/saveRdvLunettes">Confirmer</a></button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="rdvStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Status du rdv</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		
+		  <div class="row" style="text-align: left;">
+		  	<h8 id="rdvText"> Commentaire sur le rdv </h8>
+		  </div>   
+		 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="ajouterCommentaire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form action="" id="formCommentaire">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Date du rendez-vous</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <p aria-hidden="true">&times;</p>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<p>Date: <input type="date" name="date"/></p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+	        <button type="submit" value="ajouter" class="btn btn-primary">Valider</button>
+	      </div> 
+	    </div>
+	  </div>
+ </form> 	  
+</div>
+
+<div class="modal fade" id="ajouterSpecialiste" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form action="" id="formSpecialiste">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Nom du spécialiste</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <p aria-hidden="true">&times;</p>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<p>Spécialiste : <input type="text" name="orientation"/></p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+	        <button type="submit" value="ajouter" class="btn btn-primary">Valider</button>
+	      </div> 
+	    </div>
+	  </div>
+ </form> 	  
+</div>
+
+
+<footer th:include="layouts/include :: footer" class="bg-inverse" id="footer">
+</footer>
+    <script src="../static/js/particles.js" th:src="@{js/particles.js}"></script>
+    		<script src="js/rdv.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#dataRdv').DataTable( {
+            "language": {
+            	"lengthMenu" :	"_MENU_ élèments par page",
+            	"emptyTable":    "Table vide",
+                "zeroRecords": "Aucun résultat trouvé",
+                "info": "Afficher _PAGE_  page sur _PAGES_",
+                "infoEmpty": "Pas de données",
+                "search":         "Rechercher : ",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "paginate": {
+                    "first":      "First",
+                    "last":       "Last",
+                    "next":       "Suivant",
+                    "previous":   "Précédent"
+                  }
+            }
+        } );
+    } );
+   
+    
+    </script>
+
+</body>
+</html>

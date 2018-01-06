@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="module(module,nbModule)">
+			<article th:id="module+${module.position}" class="container box style1 right">
+				<div class="inner">
+
+					<div class="container">
+						<div id="box_questionnaire">
+        					<div class="list-group" >
+        						<h6 th:text="'Question '+${module.position+1}+'/'+${nbModule}"></h6>
+        						<h2 th:text="${module.nom}"></h2>
+        					</div>
+        					<div class="panel panel-primary">
+        			    		<div class="panel-body">
+		                			<div class="form-group question">
+										<th:block th:each="question,iterStat:${module.questions}">
+											<div th:replace="layouts/module :: ${iterStat.size != 1}? premierQuestionMultiple : premierQuestionUnique  (question=${question})">
+											</div>
+										</th:block>
+									</div>
+			   					 </div>
+			    			</div>
+
+							<div th:if="${module.position+1 != 6 AND module.position+1 != 5 AND module.position+1 != 4}">
+								<a th:href="'#module'+${module.position+1}" class="button style2 scrolly-middle">Suivant</a>			
+							</div>
+							<div th:if="${module.position+1 == 6}">
+ 								<button type="submit" class="style2 scrolly-middle btnValidation">Valider</button>							
+ 							</div>
+ 							
+ 							<div th:if="${module.position+1 == 5 OR module.position+1 == 4}">
+ 								<h6 class="consigne">Si non, cliquez sur suivant</h6>
+ 								<a th:href="'#module'+${module.position+1}" class="button style2 scrolly-middle">Suivant</a>							
+ 							</div>
+ 			
+							
+
+			    		</div>
+					</div>					
+				</div>
+			</article>
+		</div>
+		
+		<div th:fragment="premierQuestionUnique(question)">
+			<h4 class="panel-title" th:text="${question.texte}"></h4>
+			<div class ="row">
+				<th:block th:each="reponse:${question.reponses}">
+
+					<th:block th:if="${module.position == 1 OR module.position == 2}">
+						<span class="col-lg-6 col-xs-12">
+						<label th:for="${reponse.id_reponse}+'_reponse'" class="labelInButton" th:id="'labelInButton'+${reponse.id_reponse}" th:text="${reponse.texte}"></label>
+				    	<input th:id="${reponse.id_reponse}+'_reponse'" th:type="${reponse.type}" th:name="${question.id_question}+'_Q1'" th:value="${reponse.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'" th:class="radioInButton"/>
+				    </span>
+					</th:block>
+					
+					<th:block th:if="${module.position == 3}">
+						<span class="col-lg-3 col-xs-12">
+						<label th:for="${reponse.id_reponse}+'_reponse'" class="labelInButtonMoyen2" th:id="'labelInButton'+${reponse.id_reponse}" th:text="${reponse.texte}"></label>
+				    	<input th:id="${reponse.id_reponse}+'_reponse'" th:type="${reponse.type}" th:name="${question.id_question}+'_Q1'" th:value="${reponse.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'" th:class="radioInButton"/>
+				    </span>
+					</th:block>
+					
+					<th:block th:if="${module.position == 4}">
+						<span class="col-lg-4 col-xs-12">
+						<label th:for="${reponse.id_reponse}+'_reponse'" class="labelInButtonMoyen" th:id="'labelInButton'+${reponse.id_reponse}" th:text="${reponse.texte}"></label>
+				    	<input th:id="${reponse.id_reponse}+'_reponse'" th:type="${reponse.type}" th:name="${question.id_question}+'_Q1'" th:value="${reponse.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'" th:class="radioInButton"/>
+				    </span>
+					</th:block>
+					
+					<th:block th:if="${module.position != 1 AND module.position != 2 AND module.position != 3 AND module.position != 4}">
+						<span class="col-lg-3 col-xs-12">
+							<label th:for="${reponse.id_reponse}+'_reponse'" class="labelInButton" th:id="'labelInButton'+${reponse.id_reponse}" th:text="${reponse.texte}"></label>
+					    	<input th:id="${reponse.id_reponse}+'_reponse'" th:type="${reponse.type}" th:name="${question.id_question}+'_Q1'" th:value="${reponse.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'" th:class="radioInButton"/>
+					    </span>
+				    </th:block>
+				    
+				    
+				</th:block>
+			</div>
+			<th:block th:each="reponse:${question.reponses}">
+				<div th:replace="layouts/module :: ${reponse.aSousSousQuestion()}? sousQuestionMere : sousQuestionSimple (reponse=${reponse})">
+				</div>
+			</th:block>
+		</div>
+
+		<div class=""  th:fragment="premierQuestionMultiple(question)">
+			<div class ="row row_question">
+				<h4 class="control-label col-lg-3 col-xs-12" th:text="${question.texte}"></h4>
+				<th:block th:each="reponse:${question.reponses}">
+					<th:block th:if="${(reponse.id_reponse == 8 OR reponse.id_reponse == 162 OR reponse.id_reponse == 165 OR reponse.id_reponse == 170 OR reponse.id_reponse == 173) AND reponse.texte !='Utilisation quotidienne :'}">
+						<label th:for="${reponse.id_reponse}+'_reponse'" class="col-lg-2 col-xs-12" th:text="${reponse.texte}"></label>
+						<input th:id="${reponse.id_reponse}+'_reponse'" th:type="${reponse.type}" th:name="${question.id_question}+'_Q2'" th:value="${reponse.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'" th:class="'radioInButton option-input '+${reponse.type}"/>							
+						<span class="col-lg-3 correctionMargin"></span>						
+					</th:block>
+					<th:block th:if="${reponse.texte !='Utilisation quotidienne :' AND reponse.id_reponse != 8 OR reponse.id_reponse != 162 AND reponse.id_reponse != 165 AND reponse.id_reponse != 170 AND reponse.id_reponse != 173}">
+						<label th:for="${reponse.id_reponse}+'_reponse'" class="col-lg-2 col-xs-12" th:text="${reponse.texte}"></label>
+						<input th:id="${reponse.id_reponse}+'_reponse'" th:type="${reponse.type}" th:name="${question.id_question}+'_Q2'" th:value="${reponse.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'" th:class="'radioInButton option-input '+${reponse.type}"/>							
+					</th:block>
+					<th:block th:if="${reponse.texte =='Utilisation quotidienne :'}">
+					
+						<th:block th:if="${reponse.id_reponse == 154 OR reponse.id_reponse == 156}">
+							<label th:for="${reponse.id_reponse}+'_reponse'" class="col-lg-2 col-xs-12"></label>
+							<input th:id="${reponse.id_reponse}+'_reponse'" th:type="${reponse.type}" th:name="${question.id_question}+'_Q2'" value="50" max="100" min="0" step="1" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'"/>
+							<span class="col-lg-3 correctionMargin"></span>	
+						</th:block>
+						<th:block th:if="${reponse.id_reponse != 154 AND reponse.id_reponse != 156}">
+							<label th:for="${reponse.id_reponse}+'_reponse'" class="col-lg-2 col-xs-12"></label>
+							<input th:id="${reponse.id_reponse}+'_reponse'" th:type="${reponse.type}" th:name="${question.id_question}+'_Q2'" value="50" max="100" min="0" step="1" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'"/>
+ 						</th:block>
+
+					</th:block>	
+
+
+				</th:block>
+			</div>
+			<th:block th:each="reponse:${question.reponses}">
+				<div th:replace="layouts/module :: ${reponse.aSousSousQuestion()}? sousQuestionMere : sousQuestionSimple (reponse=${reponse})">
+				</div>
+			</th:block>
+		</div>
+		
+		<div th:if="(${not #lists.isEmpty(reponse.sousQuestions)})" class="question champEffacable" th:id="${reponse.id_reponse}+'_sousQuestion'" th:fragment="sousQuestionSimple(reponse)">
+    		<div class ="row row_question">
+	    		<h5  class="col-lg-12 col-xs-12" th:text="${reponse.texte}"></h5>
+ 			</div>
+<!-- 			<div class ="row row_question"> -->
+				<th:block th:each="sousQuestion:${reponse.sousQuestions}">
+				<div class ="row row_question">
+
+			    	<th:block th:if="${sousQuestion.texte != ''}">
+						<h4 class="control-label col-lg-5 col-xs-12" th:text="${sousQuestion.texte}"></h4>
+					</th:block>
+			    	
+					<th:block th:each="sousReponse:${sousQuestion.reponses}">
+					
+					
+					
+						<th:block th:if="${sousReponse.texte !='Année'}">
+						
+							<th:block th:if="${sousReponse.id_reponse == 29 OR sousReponse.id_reponse == 14 OR sousReponse.id_reponse == 73}">
+								<label th:for="${sousReponse.id_reponse}+'_reponse'" class="col-lg-2 col-xs-12" th:text="${sousReponse.texte}"></label>
+								<input th:id="${sousReponse.id_reponse}+'_reponse'" th:type="${sousReponse.type}" th:name="${sousQuestion.id_question}+'_Q3'"  th:value="${sousReponse.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+${sousReponse.id_reponse}+')'" th:class="'radioInButton option-input '+${sousReponse.type}"/>
+								<span class="col-lg-5 correctionMargin"></span>						
+							</th:block>
+							<th:block th:if="${sousReponse.id_reponse != 29 AND sousReponse.id_reponse != 29 AND sousReponse.id_reponse != 73}">
+								<label th:for="${sousReponse.id_reponse}+'_reponse'" class="col-lg-2 col-xs-12" th:text="${sousReponse.texte}"></label>
+								<input th:id="${sousReponse.id_reponse}+'_reponse'" th:type="${sousReponse.type}" th:name="${sousQuestion.id_question}+'_Q3'"  th:value="${sousReponse.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+${sousReponse.id_reponse}+')'" th:class="'radioInButton option-input '+${sousReponse.type}"/>
+							</th:block>
+							
+						</th:block>
+						
+						
+						
+						<th:block th:if="${sousReponse.texte =='Année'}">
+							<label th:for="${sousReponse.id_reponse}+'_reponse'" class="col-lg-2 col-xs-12"></label>
+							<input th:id="${sousReponse.id_reponse}+'_reponse'" th:type="${sousReponse.type}" th:name="${sousQuestion.id_question}+'_Q3'"  th:onchange="'javascript:selectQuestionEffacable('+${sousReponse.id_reponse}+')'"/>
+						</th:block>					
+					</th:block>
+				</div>
+				<div class ="row row_question">
+					<th:block th:each="reponse:${sousQuestion.reponses}">
+						<div th:replace="layouts/module :: ${reponse.aSousSousQuestion()}? sousQuestionMere : sousQuestionSimple (reponse=${reponse})">
+						</div>
+					</th:block>	
+				</div>
+				</th:block>
+<!-- 			</div> -->
+		</div>
+
+		<div th:fragment="sousQuestionMere(reponse)">
+			<div class="question" th:id="${reponse.id_reponse}+'_sousQuestion'">
+				<th:block th:each="question:${reponse.sousQuestions}">
+				  	<div class ="row row_question">
+						<h4 class="control-label col-lg-12 col-xs-12 sousTitre" th:text="${question.texte}"></h4>
+			    	</div>
+<!-- 					<div class ="row row_question">	 -->
+						<div class ="row rowNormale ">	
+					    	<th:block th:each="sousReponse:${question.reponses}">
+<!-- 							<span class="col-lg-4 col-xs-12">
+									<label th:for="${sousReponse.id_reponse}+'_reponse'" class="labelInButtonMoyen" th:id="'labelInButton'+${sousReponse.id_reponse}" th:text="${sousReponse.texte}"></label>
+									<div th:replace="layouts/module :: input(reponse=${sousReponse}, index=${sousReponse.id_reponse}, class=radioInButton)"></div>
+								</span>  -->
+								<span class="col-lg-4 col-xs-12"><label th:for="${sousReponse.id_reponse}+'_reponse'" class="labelInButtonMoyen" th:id="'labelInButton'+${sousReponse.id_reponse}" th:text="${sousReponse.texte}"></label>
+								<input th:id="${sousReponse.id_reponse}+'_reponse'" th:type="${sousReponse.type}" th:name="${question.id_question}+'_Q4'"  th:value="${sousReponse.id_reponse}" th:onchange="'javascript:selectQuestionEffacable('+${sousReponse.id_reponse}+')'" class="radioInButton"/></span>
+							</th:block>
+						</div>
+						<th:block th:each="reponse:${question.reponses}">
+							<div th:replace="layouts/module :: ${reponse.aSousSousQuestion()}? sousQuestionMere : sousQuestionSimple (reponse=${reponse})">
+							</div>
+						</th:block>
+<!-- 					</div> -->
+				</th:block>
+			</div>
+		</div>	
+		
+<!-- 	<th:block th:framgment="input(reponse, index, class)">
+			<input th:if="${reponse.type == 'radio'}" th:id="${reponse.id_reponse}+'_reponse'" type="radio" th:name="'reponses['+${index}+'].reponse.id_reponse'" th:value="${reponse.texte}" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'" th:class="${class}"/>			
+			<input th:if="${reponse.type == 'checkbox'}" th:id="${reponse.id_reponse}+'_reponse'" type="checkbox" th:name="'reponses['+${index}+'].reponse.id_reponse'" th:value="${reponse.texte}" th:onchange="'javascript:selectQuestionEffacable('+${reponse.id_reponse}+')'" th:class="${class}"/>			
+		</th:block>
+-->		
+
+	</body>
+</html>

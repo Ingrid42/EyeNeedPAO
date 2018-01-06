@@ -1,0 +1,1020 @@
+/******************** FONT *********************/
+@import url('https://fonts.googleapis.com/css?family=Bellefair');
+@import url('https://fonts.googleapis.com/css?family=Kurale');
+
+
+/******************** GENERAL *********************/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(-135deg, rgb(11,68,104), rgb(139,141,155));
+  background: -webkit-linear-gradient(-135deg, rgb(11,68,104), rgb(139,141,155));
+  background-attachment: fixed;
+}
+
+body {
+  color: #474A4A;
+  font-family: 'Lato', "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.471;
+}
+
+.bringFront {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.logoAcceuil {
+  margin-top: 1%;
+  margin-bottom: 0;
+}
+
+a:hover, a:focus, a, a:after, a:before  { 
+ text-decoration: none !important; 
+}
+
+/******************** INDEX *********************/
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index:9999;
+  height: 30px;
+  line-height: 30px; 
+	
+}
+
+#footer a:hover, a:focus, a, a:after, a:before  { 
+ text-decoration: none !important; 
+ color: #fff;
+}
+.titleMainPage {
+	text-align: center !important;
+}
+
+#phrase1 {
+	color: #fff ;
+	font-size: 34px;
+	
+	font-family: 'Times New Roman', serif;
+	font-weight: bold;	
+	margin-top: 0px;
+	margin-bottom: 10px;	
+}
+
+#phrase1Bis {
+	color: #fff ;
+	font-size: 50px;
+	
+	font-family: 'Times New Roman', serif;
+	font-weight: bold;	
+	margin-top: 2px;
+	margin-bottom: 10px;	
+}
+
+#phrase2 {
+	color: #E5D9AC ;
+	font-size: 16px;
+	font-family: 'Times New Roman', serif;
+	line-height: 24px;
+}
+
+#phrase3 {
+	color: #fff ;
+	font-size: 24px;
+	font-family: 'Kurale', serif;
+	font-weight: bold;	
+	margin-top: 8px;
+	margin-bottom: 15px;	
+}
+
+
+.btnDeconnexion {
+	margin-top: 170px !important;	
+}
+
+.buttonDeco {
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: none;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size:14px;
+  line-height:20px;
+  font-weight:700;
+  text-transform:uppercase;
+  border: 3px solid !important;
+  padding:8px 20px;
+}
+
+
+/******************** BUTTON *********************/
+
+.color_button {
+  font-size: 1em;
+  line-height: 1.1em;
+  color: #ffffff;
+  margin: auto;
+  height: auto;
+  width: auto;
+}
+.color_button:hover {
+  color:#9ABCD6;
+  text-decoration: none;
+  border-color: #9ABCD6;
+
+}
+
+.btn {
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: none;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size:14px;
+  line-height:20px;
+  font-weight:700;
+  text-transform:uppercase;
+  border: 3px solid;
+  padding:8px 20px;
+}
+
+.row {
+  text-align: center;
+  margin : 10px;
+}
+
+/******************** CONNEXION *********************/
+
+/* cadre de login */
+#box {
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 400px;
+	margin: 0 auto;
+	border: 1px solid #E5D9AC;
+	background: none;
+	min-height: 250px;
+	padding: 20px;
+	z-index: 9999;
+	margin-top: 8%;
+  	margin-bottom: 8%;
+}
+#box .titre {
+	padding:20px;
+	margin:0 0 0px;
+	color:white;
+	font-size: 20px;
+	
+}
+/*font texte param */
+#box .logo .logo-caption {
+	font-family: 'Poiret One', cursive;
+	color: white;
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+/* espace titre connexion des champs */
+#box .controls {
+	padding-top: 0;
+}
+
+/* couleur font des champs input */
+#box .controls input.inputConnexion {
+  font-family: 'Open Sans', sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* format + couleur button */
+.controls button {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  outline: 0;
+  background: #23588C;
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  color: #FFFFFF;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 4px;
+}
+
+.controls button span {
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+/*decale le msg */
+button:hover span {
+  padding-right: 25px;
+}
+
+/* affice le content >>  opacity devient 1*/
+button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.controls .message a {
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/******************** INSCRIPTION *********************/
+
+
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* espace entre element du form*/
+.group {
+    position: relative;
+    margin-bottom: 42px;
+}
+
+/* mettre une ligne pour le input */
+.group input {
+    font-size: 13px;
+    padding: 5px 5px 5px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    background: none;
+    color: #eee;
+}
+
+.group input:focus {
+    outline: none;
+}
+
+/* label au dessus de la ligne */
+.group label {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 5px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* place le nom de label au dessus quand on commence à écrire  ATTENTTION : A DECOMMENTER POUR INSCRIPTION ET METTRE UN ID POUR PAS AVOIR DE CONFLIT AVEC LE QUESTIONNAIRE*/
+/* .group input:focus ~ label,
+input:valid ~ label {
+    top: -8px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+} */
+
+
+label > i {
+  margin-right: 10px;
+}
+
+.cgu {
+	color: #fff;
+	font-size: 9px;
+	margin-top: 15px;
+}
+
+
+/******************** Questionnaire *********************/
+
+.list-group {
+  /*background-color: rgba(229,217,172, 0.6);*/
+  border-bottom: 1px solid rgba(229,217,172,1);
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.panel {
+  color: #fff;
+}
+/*
+.btn-primary {
+  width: 400px;
+  font-size: 14px;
+  margin-bottom: 10px;
+} */
+
+#box_questionnaire {
+ /* position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 650px;
+  margin: 0 auto; */
+  border: 1px solid #E5D9AC;
+  background: none;
+  min-height: 250px;
+  padding: 20px;
+  z-index: 9999;
+  margin-top: 4%;
+  margin-bottom: 8%;
+}
+
+.form-group {
+  font-size: 13px;
+}
+
+.input {
+	padding:8px 20px;
+	text-align: left;
+
+}
+
+.radioInButton {
+	display : none;
+}
+
+.labelInButton {
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: none;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-top: 5px;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size:14px;
+  line-height:20px;
+  font-weight:700;
+  text-transform:uppercase;
+  border: 3px solid;
+  padding:8px 20px;
+  color: #ffffff;
+  /*width:125px;*/
+}
+
+.labelInButtonMoyen {
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: none;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size:14px;
+  line-height:20px;
+  font-weight:700;
+  text-transform:uppercase;
+  border: 3px solid;
+  padding:8px 20px;
+  color: #ffffff;
+  width:280px;
+}
+
+.labelInButtonMoyen2 {
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: none;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size:14px;
+  line-height:20px;
+  font-weight:700;
+  text-transform:uppercase;
+  border: 3px solid;
+  padding:8px 20px;
+  color: #ffffff;
+  width:250px;
+}
+
+
+.labelInButtonPetit {
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: none;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size:14px;
+  line-height:20px;
+  font-weight:700;
+  text-transform:uppercase;
+  border: 3px solid;
+  padding:8px 20px;
+  color: #ffffff;
+  width:230px;
+}
+
+.labelInButtonGrand {
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: none;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size:14px;
+  line-height:20px;
+  font-weight:700;
+  text-transform:uppercase;
+  border: 3px solid;
+  padding:8px 20px;
+  color: #ffffff;
+  width:340px;
+}
+
+.labelInButton:hover {
+  color:#9ABCD6;
+  text-decoration: none;
+  border-color: #9ABCD6;
+
+}
+
+
+.btnDebutQuestion {
+	padding : 15px;
+}
+
+.panel-title {
+	font-size: 20px;
+}	
+.reponseText{
+	margin-top: -6px;
+	margin-bottom:6px;
+}
+.control-label {
+	font-size: 16px;
+	font-style: oblique;
+	
+/* 	text-align: left; */
+/* 	margin-left: 10px; */
+}
+
+/* .correctionMargin { */
+/* margin-left: 10px; */
+/* } */
+
+
+#btnSubmit {
+	margin-top: 55px;
+}
+
+/* .option-input { */
+/*   -webkit-appearance: none; */
+/*   -moz-appearance: none; */
+/*   -ms-appearance: none; */
+/*   -o-appearance: none; */
+/*   appearance: none; */
+/*   position: relative; */
+/*   top: 13.33333px; */
+/*   right: 0; */
+/*   bottom: 0; */
+/*   left: 0; */
+/*   height: 40px; */
+/*   width: 40px; */
+/*   transition: all 0.15s ease-out 0s; */
+/*   background: #cbd1d8; */
+/*   border: none; */
+/*   color: #fff; */
+/*   cursor: pointer; */
+/*   display: inline-block; */
+/*   margin-right: 0.5rem; */
+/*   outline: none; */
+/*   position: relative; */
+/*   z-index: 1000; */
+/* } */
+
+.option-input:hover {
+  background: #9faab7;
+}
+
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+*{font-family: 'Roboto', sans-serif;}
+
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 5px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+  margin-left: 10px;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #0B4468;
+}
+.option-input:checked::before {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 25.66667px;
+  text-align: center;
+  line-height: 16.3333px;
+}
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+input[list]
+{
+  width: 100px;
+}
+
+label#correction {
+	margin-left: 20px;
+}
+
+/* correction surcouche du au pb de css avec thymeleaf */
+
+h2 {
+	margin-bottom : 1% !important;
+}
+
+h4.panel-title {
+	margin-top : 3% !important;
+	margin-bottom : 3% !important;
+}
+
+
+.rowNormale {
+	margin-left: 70px !important;
+	margin-bottom: 5px !important;
+	
+}
+
+.btnValidation {
+	margin-top: 50px;
+}
+
+
+
+/* curseur */
+
+input[type="range"]{
+  margin-top: 8px;;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 13rem;
+  height: 0.15rem;
+  outline: none;
+  border-radius: 0.rem;
+  outline-style:none;
+}
+
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none;
+          appearance: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  background-color: #0B4468;
+  border: 0.2rem solid #fff;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+
+.LegendGauche {
+  float: left;
+  color: #fff;
+  font-size: 19px;
+  margin-right: 10px;
+  margin-top: -5px;
+  margin-left: -30px;
+}
+
+
+.LegendDroite {
+  float: left;
+  color: #fff;
+  font-size: 19px;
+  margin-left: 6px;
+  margin-top: -5px;
+  margin-right: 8px;
+}
+
+.consigne {
+  color: #fff;
+  font-size: 12px;
+  margin-top: 25px;
+  margin-bottom: -15px;
+}
+
+
+.selectMedecinTitre {
+	margin-top: 20px;
+}
+
+
+.selectMedecin {
+	margin-top: 10px;
+	margin-left: 88px;
+}
+
+/***************** Surcouche affichage qustionnaire modulable *************************/
+
+.sousTitre {
+	text-align: center !important;
+	margin-bottom: 20px !important;
+	margin-top: 5px !important;
+}
+
+.row_question {
+	margin-top: 25px;
+	margin-bottom: 5px;
+	margin-left: 100px;
+	margin-right: auto;
+	
+}
+
+.rowNormale {
+	margin-left:-4px !important;
+	background-color: none !important;
+}
+
+
+.question {
+	margin-left: -4px !important;
+}
+/***************** Table Admin *************************/
+
+
+.titreCol {
+  font-weight: bold;
+  padding: 10px;
+  margin-top: -25px;
+  text-align: center;
+}
+.paginate_button {
+	color: black !important;
+}
+
+/***************** Input accueil reponses pré-consultation ********************/
+
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}
+
+.titleFormSynthese {
+	color: white;
+	text-align: left;
+}
+
+/***************** Page reponses pré-consultation ********************/
+
+/* .user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad {margin-top:20px;
+} */
+
+table#acrylic {
+            border-collapse: separate;
+            background: #fff;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            margin: 50px auto;
+            -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        
+        #acrylic thead {
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+        
+        #acrylic thead th {
+            font-family: 'Roboto';
+            font-size: 16px;
+            font-weight: 400;
+            color: #fff;
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            padding: 20px;
+            background-size: 100%;
+            background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #646f7f), color-stop(100%, #4a5564));
+            background-image: -moz-linear-gradient(#646f7f, #4a5564);
+            background-image: -webkit-linear-gradient(#646f7f, #4a5564);
+            background-image: linear-gradient(#646f7f, #4a5564);
+            border-top: 1px solid #858d99;
+        }
+        
+        #acrylic thead th:first-child {
+            -moz-border-top-right-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+        
+        #acrylic thead th:last-child {
+            -moz-border-top-right-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        
+        #acrylic tbody tr td {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            color: #5f6062;
+            font-size: 13px;
+            padding: 20px 20px 20px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        #acrylic tbody tr:nth-child(2n) {
+            background: #f0f3f5;
+        }
+        
+        #acrylic tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        #acrylic tbody tr:last-child td:first-child {
+            -moz-border-bottom-right-radius: 5px;
+            -webkit-border-bottom-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        
+        #acrylic tbody tr:last-child td:last-child {
+            -moz-border-bottom-right-radius: 5px;
+            -webkit-border-bottom-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        
+        /* #acrylic tbody:hover > tr td {
+            filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50);
+            opacity: 0.5;
+        }
+        
+        #acrylic tbody:hover > tr:hover td {
+            text-shadow: none;
+            color: #2d2d2d;
+            filter: progid: DXImageTransform.Microsoft.Alpha(enabled=false);
+            opacity: 1;
+            transition: 0.2s all;
+        } */
+
+/************autre ***************/
+
+/* .confirmationTexte {
+	color: white !important;
+} */
+.ajustement {
+	font-size: 30px !important;
+}
+
+/* .btnIndex {
+	border: 1px solid white !important;
+} */
+
+.infoButton {
+	text-transform: none;
+	font-size: 12px;
+	
+	
+}
+
+.color_button2 {
+  font-size: 0.8em;
+  line-height: 0.3em;
+  color: #ffffff;
+  margin: auto;
+  height: auto;
+  width: auto;
+}
+.color_button2:hover {
+  color:#9ABCD6;
+  text-decoration: none;
+  border-color: #9ABCD6;
+
+}
+
+.spaceMore {
+	margin-top: 5%;
+} 
+
+
+/******************** ID FOOTER *********************/
+
+#footerIcon {
+
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: auto;
+/*   background: rgba(0, 0, 0, 0.4)
+ */}
+
+
+/* Custom footer CSS
+-------------------------------------------------- */
+
+.containerIcon {
+  width: auto;
+  padding-top: 2%;
+}
+.containerIcon .text-muted {
+  margin: 50px 0;
+}
+.footertext {
+  color: #ffffff;
+  padding: 5px 40px 0px 40px;
+  font-style: italic;
+}
+
+
+
+/**/

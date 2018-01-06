@@ -1,0 +1,123 @@
+/******************** NAVBAR *********************/
+
+/* navbar prend toute la largeur */
+#navHeader {
+  width: 1058px;
+  height: 70px;
+  padding: 0;
+  border: 1px solid #ffffff;
+  margin-top: 40px;
+}
+
+
+/* partie profil float droit et pourcentage largeur  */
+.top_nav .navbar-right {
+  /*margin: 0;
+  width: 20%;*/
+  float: right;
+  margin-top: 1.3%
+}
+
+
+@media (min-width: 480px) {
+  .top_nav .navbar-right li {
+    position: relative
+  }
+}
+
+/* taille icone fa */
+.top_nav li a i {
+  font-size: 15px
+}
+
+/* couleur de fond de la navbar  */
+.nav_menu {
+  float: left;
+  /*background: #EDEDED;*/
+
+  width: 100%;
+  position: relative
+}
+
+@media (min-width: 480px) {
+  .nav_menu {
+    position: static
+  }
+}
+
+/* text user en blanc */
+.navbar-nav>li>a,
+.navbar-brand,
+.navbar-nav>li>a {
+  color: #fff ;
+}
+
+.nav>li>a {
+  position: relative;
+  display: block;
+  padding-top: 5px;
+}
+
+.navbar-nav>li>a {
+  font-weight: 500;
+  /*color: #0B4468 !important;*/
+  margin-left: 0 !important;
+  line-height: 32px
+}
+
+
+/* parti logo  : meme ligne que user */
+#logo {
+  float: left;
+  margin: 10px 10px 10px 10px;
+  margin-left: 2%;
+}
+
+
+#dropdownProfil>li>a {
+  color: #5A738E
+}
+
+#dropdownProfil a:hover,
+#dropdownProfil a:focus {
+  list-style: none;
+  text-decoration: none !important;
+  color: #9ABCD6 !important;
+}
+
+ul {
+  list-style: none;
+}
+
+
+.boutonProfil {
+  font-size: 1em !important;
+  color: #ffffff !important;
+  margin: auto !important;
+  height: auto !important;
+  width: auto !important;
+  color:#9ABCD6;
+  text-decoration: none !important;
+  border: none !important;
+  background: none !important;
+  text-transform:uppercase !important;
+  overflow: visible;
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: none;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size:14px;
+  line-height:20px;
+  font-weight:700;
+  text-transform:uppercase;
+  border: 3px solid;
+  padding:8px 20px;
+}

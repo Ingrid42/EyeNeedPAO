@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><!-- Questionnaire controller -->
+<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+		<meta charset="UTF-8"/>
+		<title>EyeNeed</title>
+		<link href="../static/css/overflow.css" rel="stylesheet" th:href="@{css/overflow.css}"/> 
+		<link href="../static/css/index.css" rel="stylesheet" th:href="@{css/index.css}"/>
+		<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+		<script src="../static/js/jquery-3.1.1.min.js" charset="utf-8" th:src="@{js/jquery-3.1.1.min.js}"></script>
+		<script src="../static/js/questionnaire.js" charset="utf-8" th:src="@{js/questionnaire.js}"></script>
+  		<link href="lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<style type="text/css">
+  			.question>.question {
+    			display: none;}
+   		</style>
+</head>
+<body>
+<div id="particles-js">
+  <div class="bringFront">
+	<img id="logo" src="../static/img/eyeneedLogo.svg" th:src="@{img/eyeneedLogo.svg}" alt="logo" height="100" width="200" style="margin-top:2%;"/>
+	
+	<div class="row titleMainPage">
+       	<h1 id="phrase3" class="col-lg-12 ajustement">Bienvenue à la pré-consultation EyeNeed</h1>
+       	<span class="col-lg-3"></span>
+     	<p id="phrase2" class="col-lg-6">Pour cette première utilisation nous avons besoin de mieux vous connaître</p>
+    </div>
+	<img id="logo" src="img/5_min.png" alt="logo" height="150" width="150" style="margin-top:1%;"/>
+	
+	
+	
+	<form  th:action="@{/saveQuestionnaire}" th:object="${ListeReponses}" method="post">
+		<a href="#0" class="button style2 scrolly-middle buttonDebut" >Commencer le questionnaire</a>
+		<div th:each="p:${ListeModules}">
+
+		<!-- 		Module1 -->
+		<!--/* Si une seule question alors load le template module1 */-->
+		<th:block th:if="${#lists.size(p.questions)} == 1">
+<!-- 		<div th:include="layouts/modules :: module(module=${p},nbreModules=${#lists.size(ListeModules)})">  -->
+   		<div th:include="layouts/module1 :: module1">
+   		</div> 
+		</th:block>
+		<!--/* Si plusieures questions alors load le template module2 */-->
+		<th:block th:if="${#lists.size(p.questions)} > 1">
+		<div th:include="layouts/module2 :: module2">
+   		</div> 
+		</th:block>
+
+
+<!-- 		<div th:include="|${#strings.concat('layouts/module', p.position+1)} :: ${#strings.concat('module', p.position+1)}|"> -->
+<!--   		</div> -->
+		
+
+
+ 
+		</div>	
+		
+		
+		
+			
+				
+				<button type="submit" class="style2 scrolly-middle btnValidation" style="margin-bottom: 50px;">Valider</button>
+  									
+			
+		<input type="hidden"  th:field="${questionnaire.duree}" />
+			
+			
+
+
+		
+	 
+	
+</form>
+
+</div>
+</div>
+</body>
+
+  <script src="../static/js/jquery.scrolly.min.js"  th:src="@{js/jquery.scrolly.min.js}" charset="utf-8"></script>
+  <script src="../static/js/jquery.poptrox.min.js"  th:src="@{js/jquery.poptrox.min.js}" charset="utf-8"></script>
+  <script src="../static/js/skel.min.js"  th:src="@{js/skel.min.js}" charset="utf-8"></script>
+  <script src="../static/js/util.js"  th:src="@{js/util.js}" charset="utf-8"></script>
+  <script src="../static/js/overflow.js" th:src="@{js/overflow.js}" charset="utf-8"></script>
+  <script src="../static/js/particles.js" th:src="@{js/particles.js}"></script>
+  <script src="../static/js/particlesConfig.js" th:src="@{js/particlesConfig.js}"></script>
+  
+</html>

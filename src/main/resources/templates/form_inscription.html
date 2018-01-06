@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <title>EyeNeed</title>
+  <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+  <link href="../static/lib/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{lib/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+  <link href="../static/css/style_particule.css"  th:href="@{css/style_particule.css}" rel="stylesheet"/>
+  <link href="../static/css/index.css" th:href="@{css/index.css}" rel="stylesheet"/>
+  <link href="../static/css/inscription.css" th:href="@{css/inscription.css}" rel="stylesheet"/>
+<!--   <link href="../static/css/cayman.css" th:href="@{css/cayman.css}" rel="stylesheet"/>
+  <link href="../static/css/normalize.css" th:href="@{css/normalize.css}" rel="stylesheet"/>
+  <link href="../static/css/simpleNotifyStyle.css" th:href="@{css/simpleNotifyStyle.css}" rel="stylesheet"/> -->
+  <link href="../static/css/hotsnackbar.css" th:href="@{css/hotsnackbar.css}" rel="stylesheet"/> 
+  <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+  <script src="../static/js/jquery-3.1.1.min.js" th:src="@{js/jquery-3.1.1.min.js}" charset="utf-8"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+</head>
+<body>
+  <div id="particles-js">
+    <div class="bringFront">
+
+      <div class="container col-xs-12">
+        <div id="box">
+          <div class="logo">
+            <a href="index.html"><img src="../static/img/eyeneedLogo.svg" th:src="@{img/eyeneedLogo.svg}" height="100" width="200" class="img img-responsive img-circle center-block"/></a>
+          </div>
+          <div class="controls">
+            <div class="box_form">
+
+              <form id="login-form" th:action="@{/saveUtilisateur}" method="post" autocomplete="off">
+				<div id="formUtilisateur" th:object="${utilisateur}"> <!-- fin Form Utilisateur -->
+                <div style="clear:both;"></div>
+
+                <div class="group" id="divNom">
+                  <input type="text" required="required" name="nom" id="nom" autocomplete="off"/>
+                  <label id="labelNom"><i class="fa fa-id-badge" aria-hidden="true"></i><span class="span-input">Nom *</span></label>
+                </div>
+
+                <div class="group">
+                  <input type="text" required="required" name="prenom" id="prenom" autocomplete="off"/>
+                  <label id="labelPrenom"><i class="fa fa-user-o" aria-hidden="true"></i><span class="span-input">Prénom *</span></label>
+                </div>
+                <div class="group">
+                  
+                  
+                  <select class="form-control" id="genre" name="genre">
+				    <option value="0" >Femme</option>
+				    <option value="1">Homme</option>
+				    
+				  </select>
+                </div>
+				<div class="group">
+                  <input type="text" required="required" name="codePostal" id="codePostal" autocomplete="off"/>
+                  <label id="labelCodePostal"><i class="fa fa-phone" aria-hidden="true"></i><span class="span-input">Code postal *</span></label>
+                </div>
+                <div class="group">
+                  <input type="text" id="naissance" required="required" name="naissance" autocomplete="off" />
+                  <label id="labelNaissance"><i class="fa fa-calendar" aria-hidden="true" placeholder="jj/mm/aaaa"></i><span class="span-input">Date de naissance *  <i>(jj/mm/aaaa)</i></span></label>
+                </div>
+
+                <div class="group">
+                  <input type="text" required="required" name="mail"  id="mail" autocomplete="off" />
+                  <label id="labelMail"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="span-input">Email *</span></label>
+                </div>
+
+                <div class="group">
+                  <input type="text" required="required" name="tel" autocomplete="off" />
+                  <label><i class="fa fa-phone" aria-hidden="true"></i><span class="span-input">Téléphone *</span></label>
+                </div>
+                <div class="group">
+                  <input id="login" type="text" required="required" name="login" autocomplete="off"/>
+                  <input type="hidden" id="isLogin" value="" autocomplete="off"/>
+                  <label id="labelLogin"><i class="fa fa-user-o" aria-hidden="true"></i><span class="span-input">Identifiant *</span></label>
+                </div>
+                
+                <div class="group">
+                
+                <div class="group">
+                  <input type="password" required="required" name="password" id="password" autocomplete="off" />
+                  <label  id="labelPassword"><i class="fa fa-lock" aria-hidden="true"></i><span class="span-input">Mot de passe *</span></label>
+                </div>
+                
+				
+                <div class="group">
+                  <input type="password" required="required" id="passwordValidation" autocomplete="off" />
+                  <label id="labelPasswordValidation"><i class="fa fa-unlock-alt" aria-hidden="true"></i><span class="span-input">Confirmation du mot de passe</span></label>
+                  
+                </div>
+                <div>
+<!--                 <input  type="checkbox" required="required" id="cgu" style="margin-top: -8px;float: right;" onchange="valideCgu();"/>
+ -->                
+ 
+ 				<h5 class="cgu"> En cliquant sur Valider vous acceptez les conditions générales d'utilisation du site Eyeneed  (<a href="cgu.html" class="lienCgu" target="_blank">Lire CGU</a> )</h5>               
+                
+                
+                
+                  
+                </div>
+				</div> <!-- fin Form Utilisateur -->
+				
+			
+				
+				</div>
+              </form>
+              <div id="btnSubmit" >
+				<button id="btnSuivant" onclick="valideForm();"><span>Valider</span></button>
+				</div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+</div>
+
+
+<!--   <footer th:include="layouts/include :: footer" id="footer" class="bg-inverse" style="color: #fff;"> -->
+<!--   </footer> -->
+		<script src="../static/js/eyeneed.js" th:src="@{js/eyeneed.js}"></script>
+    	<!-- <script src="../static/js/simpleNotify.js" th:src="@{js/simpleNotify.js}"></script> -->
+    	<script src="../static/js/hotsnackbar.js" th:src="@{js/hotsnackbar.js}"></script>
+
+  </body>
+  </html>

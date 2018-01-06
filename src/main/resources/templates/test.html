@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+<title>Test</title>
+</head>
+<body>
+<div th:each="v : ${villes}">
+<p th:text="'code postal =' + ${v[0]} + 'count=' + ${v[1]} "></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="headerAdmin">
+
+<footer  class="bg-inverse" >
+   
+	<div class="container " style="color:#fff;height: 40px;line-height: 40px;">
+	<a href="home"><img id="logo" src="../static/img/eyeneedLogo.svg" th:src="@{img/eyeneedLogo.svg}"
+									alt="logo" height="40" width="80" class="" /></a>
+  	<center>
+  		 <i class="fa fa-users" aria-hidden="true"></i>&nbsp;<span th:text="${indicateur.visites} + ' Visites   '"> 1000 Visites  </span> &nbsp;&nbsp;&nbsp;
+
+  		 <span style="text-align: right"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<i th:text="${indicateur.questionnaires} + ' questionnaires remplis'"> 10 questionnaires remplis </i></span>
+  		    		<a  href="#rdv" data-toggle="modal" data-target="#rdv" style="padding:50px" target="_blank" th:text="${indicateur.examens + indicateur.lunettes + indicateur.fondOeil + indicateur.controle + indicateur.chirurgie + indicateur.consultations} + '  Rendez-vous demandés'"><i class="fa fa-odnoklassniki" aria-hidden="true"></i> 5  Rendez-vous</a>   
+ 	<i class="fa fa-users" aria-hidden="true"></i>&nbsp;<span th:text="${nbreUtilisateurs} + ' Utilisateurs dans la base  dont ' + ${indicateur.connectes} + ' nouveaux'"> 1000 utilisateur dans la base  </span> &nbsp;&nbsp;&nbsp;
+ 	
+ 	</center>
+	</div>
+</footer>
+<div  style="color:#fff;height: 20px;text-align: right;">
+	<i class="fa fa-users" aria-hidden="true"></i>&nbsp;<span th:text="'Bienvenue ' + ${utilisateur.prenom} + ' ' +${utilisateur.nom}"> 1000 Visites  </span> &nbsp;&nbsp;&nbsp;
+    <a href="logout"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;<span > Deconnexion  </span></a> &nbsp;&nbsp;&nbsp;
+</div>
+
+</div>
+	
+<div th:fragment="headerSecretaire">
+
+<footer  class="bg-inverse" >
+   
+	<div class="container " style="color:#fff;height: 40px;line-height: 40px;">
+	<a href="home"><img id="logo" src="../static/img/eyeneedLogo.svg" th:src="@{img/eyeneedLogo.svg}"
+									alt="logo" height="40" width="80" class="" /></a>
+  	<center>
+  		 <i class="fa fa-users" aria-hidden="true"></i>&nbsp;<span th:text="${indicateur.visites} + ' Visites   '"> 1000 Visites  </span> &nbsp;&nbsp;&nbsp;
+
+<!--   		 <span style="text-align: right"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;<i th:text="${indicateur.questionnaires} + ' questionnaires remplis'"> 10 questionnaires remplis </i></span> -->
+  		    		<a  href="#rdv" data-toggle="modal" data-target="#rdv" style="padding:50px" target="_blank" th:text="${indicateur.examens + indicateur.lunettes + indicateur.fondOeil + indicateur.controle + indicateur.chirurgie + indicateur.consultations} + '  Rendez-vous demandés'"><i class="fa fa-odnoklassniki" aria-hidden="true"></i> 5  Rendez-vous</a>   
+<!--  	<i class="fa fa-users" aria-hidden="true"></i>&nbsp;<span th:text="${nbreUtilisateurs} + ' Utilisateurs dans la base  dont ' + ${indicateur.connectes} + ' nouveaux'"> 1000 utilisateur dans la base  </span> &nbsp;&nbsp;&nbsp; -->
+ 	
+ 	</center>
+	</div>
+</footer>
+<div  style="color:#fff;height: 20px;text-align: right;">
+	<i class="fa fa-users" aria-hidden="true"></i>&nbsp;<span th:text="'Bienvenue ' + ${utilisateur.prenom} + ' ' +${utilisateur.nom}"> 1000 Visites  </span> &nbsp;&nbsp;&nbsp;
+    <a href="logout"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;<span > Deconnexion  </span></a> &nbsp;&nbsp;&nbsp;
+</div>
+
+</div>
+
+</body>
+</html>

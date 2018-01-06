@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <title>EyeNeed</title>
+  <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+  <link href="../static/lib/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{lib/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+  <link href="../static/css/style_particule.css"  th:href="@{css/style_particule.css}" rel="stylesheet"/>
+  <link href="../static/css/index.css" th:href="@{css/index.css}" rel="stylesheet"/>
+  <link href="../static/css/inscription.css" th:href="@{css/inscription.css}" rel="stylesheet"/>
+  <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+  <script src="../static/js/jquery-3.1.1.min.js" th:src="@{js/jquery-3.1.1.min.js}" charset="utf-8"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link href="css/accueil.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="particles-js">
+    <div class="bringFront">
+	<div  th:include="layouts/include :: headUser">
+	</div>
+	<div class="row" >
+			
+	</div>
+      <div class="container col-xs-12">
+        <div id="box">
+          <div class="logo">
+            <a href="index.html"><img src="../static/img/eyeneedLogo.svg" th:src="@{img/eyeneedLogo.svg}" height="100" width="200" class="img img-responsive img-circle center-block"/></a>
+          </div>
+          <div class="controls">
+            <div class="box_form">
+
+              <form id="login-form" th:action="@{/updateUtilisateur}" method="post">
+				<div id="formUtilisateur" th:object="${utilisateur}"> <!-- fin Form Utilisateur -->
+                <div style="clear:both;"></div>
+
+                <div class="group" id="divNom">
+                  <input type="text" required="required" name="nom" id="nom" th:value="*{prenom}"/>
+                  <label id="labelNom"><i class="fa fa-id-badge" aria-hidden="true"></i><span class="span-input">Nom</span></label>
+                </div>
+
+                <div class="group">
+                  <input type="text" required="required" name="prenom" id="prenom" th:value="*{prenom}"/>
+                  <label id="labelPrenom"><i class="fa fa-user-o" aria-hidden="true"></i><span class="span-input">Prénom</span></label>
+                </div>
+                <div class="group">
+                  
+                  
+                  <select class="form-control" id="genre" name="genre" th:value="*{genre}">
+				    <option value="0" >Femme</option>
+				    <option value="1">Homme</option>
+				    
+				  </select>
+                </div>
+				<div class="group">
+                  <input type="text" required="required" name="codePostal" id="codePostal" th:value="*{codePostal}"/>
+                  <label id="labelCodePostal"><i class="fa fa-phone" aria-hidden="true"></i><span class="span-input">Code postal</span></label>
+                </div>
+                <div class="group">
+                  <input type="text" id="datepicker" required="required" name="naissance" th:value="*{naissance}"/>
+                  <label id="labelNaissance"><i class="fa fa-calendar" aria-hidden="true"></i><span class="span-input">Date de Naissance</span></label>
+                </div>
+
+                <div class="group">
+                  <input type="text" required="required" name="mail"  id="mail" th:value="*{mail}"/>
+                  <label id="labelMail"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="span-input">Email</span></label>
+                </div>
+
+                <div class="group">
+                  <input type="text" required="required" name="tel" th:value="*{tel}"/>
+                  <label><i class="fa fa-phone" aria-hidden="true"></i><span class="span-input">Téléphone</span></label>
+                </div>
+                <div class="group">
+                  <input id="login" type="text" required="required" name="login" th:value="*{login}"/>
+                  <label id="labelLogin"><i class="fa fa-user-o" aria-hidden="true"></i><span class="span-input">Identifiant</span></label>
+                </div>
+                
+                <div class="group">
+                
+                <div class="group">
+                  <input type="password"  name="password" id="password" />
+                  <label  id="labelPassword"><i class="fa fa-lock" aria-hidden="true"></i><span class="span-input">Mot de passe</span></label>
+                </div>
+                
+				
+                <div class="group">
+                  <input type="password"  id="passwordValidation" />
+                  <label id="labelPasswordValidation"><i class="fa fa-unlock-alt" aria-hidden="true"></i><span class="span-input">Confirmation</span></label>
+                  
+                </div>
+                
+				</div> <!-- fin Form Utilisateur -->
+				<div id="Submit">
+				<button id="btnSuivant" ><span>Modifier</span></button>
+				</div>
+				
+				
+				</div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<footer th:include="layouts/include :: footer" class="bg-inverse" id="footer">
+</footer>
+<!-- <script src="../static/js/eyeneed.js" th:src="@{js/eyeneed.js}"></script>
+ -->  </body>
+  </html>

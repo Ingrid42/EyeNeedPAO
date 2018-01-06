@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <title>EyeNeed</title>
+  <script src="js/jquery-3.1.1.min.js" th:href="@{js/jquery-3.1.1.min.js}" charset="utf-8"></script>
+  <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	
+  <link href="../static/lib/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{lib/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+  <link href="../static/css/style_particule.css"  th:href="@{css/style_particule.css}" rel="stylesheet"/>
+  <link href="../static/css/index.css" th:href="@{css/index.css}" rel="stylesheet"/>
+  
+  
+  <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css" rel="stylesheet"></link>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"></link>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet"></link>
+  <link href="../static/css/accueil.css" th:href="@{css/accueil.css}" rel="stylesheet"/>
+  <link href="../static/css/navbar.css" th:href="@{css/navbar.css}" rel="stylesheet"/>
+
+</head>
+<body>
+<div id="particles-js">
+    <div class="bringFront">
+
+<!-- top navigation -->
+<div th:include="layouts/includeAdmin :: headerAdmin" >
+		</div>
+			<div class="row" >
+			</div>
+<!-- /top navigation -->
+
+		<!-- <form class="form-horizontal" th:action="@{/viewReponse}" method="get">
+			<fieldset>
+				
+				<div class="row">
+        			<div class="col-md-5">
+    					<h5 class="titleFormSynthese">Récupérer la pré-consultation d'un utilisateur</h5>
+            				<div id="custom-search-input">
+				                <div class="input-group col-md-12">
+				                    	<input id="textinput" name="textinput" type="text" placeholder="login" class="form-control input-md"/>
+				                    
+				                    <span class="input-group-btn">
+				                        <button class="btn btn-info btn-lg" type="submit">
+				                            <i class="glyphicon glyphicon-search"></i>
+				                        </button>
+				                    </span>
+				                </div>
+           					 </div>
+        			</div>
+				</div>
+				
+
+			</fieldset>
+		</form> -->
+		
+	
+
+      <div class="container col-xs-12">
+		<div class="row">
+	      <div class="panel panel-primary filterable col-lg-12">
+	        <table class="table table-hover" id="dataRdv">
+	          <thead>
+	            <tr>
+	              
+	              <th class="titreCol">Patient</th>
+	              <th class="titreCol">Âge</th>
+	              <th class="titreCol">Ordonnance</th>
+	              <th class="titreCol" width="160px">Antécédents ophtalmologiques</th>
+	              <th class="titreCol">Antécédents Chirurgicaux</th>
+	              <th class="titreCol">Antécédents Familiaux</th>
+	              <th class="titreCol">Diabéte</th>
+	            </tr>
+	          </thead>
+
+	          <tbody>
+	          	 <tr th:each="element : ${arraySynthese}">
+	                
+	                <td th:text="${element.prenom} + ' ' +${element.nom} +' ('+ ${element.login} + ') '" width="180px">Patient</td>
+					<td th:text="${element.age}">age</td>	                
+					<td th:text="${element.anneeOrdonnance}">AnneeOrdonnance</td>
+	                <td th:text="${element.anteOphtalmo}">anteOphtalmo</td>
+	                <td th:text="${element.anteChir}">anteChir</td>
+	                <td th:text="${element.anteFamiliaux}">anteFamiliaux</td>
+	                <td th:text="${element.diabete}">diabete</td>
+           		 </tr>	          
+	    	  </tbody>
+	        </table>
+	      </div>
+	     </div>
+    	
+    	
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer th:include="layouts/include :: footer" class="bg-inverse" id="footer"></footer>
+    <script src="../static/js/particles.js" th:src="@{js/particles.js}"></script>
+    <script>
+    $(document).ready(function() {
+        $('#dataRdv').DataTable( {
+            "language": {
+            	"lengthMenu" :	"_MENU_ élèments par page",
+            	"emptyTable":    "Table vide",
+                "zeroRecords": "Aucun résultat trouvé",
+                "info": "Afficher _PAGE_  page sur _PAGES_",
+                "infoEmpty": "Pas de données",
+                "search":         "Rechercher : ",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "paginate": {
+                    "first":      "First",
+                    "last":       "Last",
+                    "next":       "Suivant",
+                    "previous":   "Précédent"
+                  }
+            }
+        } );
+    } );
+    </script>
+
+</body>
+</html>

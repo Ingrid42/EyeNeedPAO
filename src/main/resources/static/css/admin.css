@@ -1,0 +1,213 @@
+.row {
+	margin: 0;
+	margin-top: 12px;
+}
+
+.right_col {
+	margin-left: 38px;
+}
+
+.x_title h2 {
+	font-size: 18px;
+}
+
+.x_panel {
+	padding: 5px 0px;
+}
+
+/* --------------------Card Stats----------------- */
+.box__body {
+	padding: 0 25px;
+	margin-top: 14px;
+}
+
+.stats {
+	position: relative;
+	padding-bottom: 20px;
+}
+
+.stats__amount {
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 1.2;
+	text-align: left;
+}
+
+.stats__caption {
+	font-size: 14px;
+	text-align: left;
+}
+
+.stats__change {
+	position: absolute;
+	top: 8px;
+	right: 0;
+	text-align: right;
+}
+
+.stats__value {
+	font-size: 14px;
+}
+
+.stats__period {
+	font-size: 12px;
+}
+
+.stats__value--positive {
+	color: #3498DB;
+}
+
+.stats__value--negative {
+	color: #FB8B24;
+}
+
+.stats--main .stats__amount {
+	font-size: 20px;
+}
+
+/* --------------------Top Box Info----------------- */
+.info-box {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+	height: 80px;
+	display: flex;
+	cursor: default;
+	background-color: #fff;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+.info-box .icon {
+	display: inline-block;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.12);
+	width: 60px;
+}
+
+.info-box .icon i {
+	color: #fff;
+	font-size: 40px;
+	line-height: 80px;
+}
+
+.info-box .content {
+	display: inline-block;
+	padding: 7px 10px;
+}
+
+.info-box .content .text {
+	font-size: 14px;
+	margin-top: 11px;
+	color: #fff;
+}
+
+.info-box .content .number {
+	font-weight: normal;
+	font-size: 26px;
+	margin-top: -4px;
+	color: #fff;
+}
+
+.numberBox {
+	margin-top: 4px;
+	font-size: 22px;
+}
+
+/* --------------------Card rdv par catégorie----------------- */
+.tableName {
+	text-align: center;
+}
+
+/* Card ======================================== */
+.card {
+	min-height: 50px;
+	position: relative;
+	margin-bottom: 0px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border: none;
+}
+
+.card .card-inside-title {
+	margin-top: 25px;
+	margin-bottom: 15px;
+	display: block;
+	font-size: 15px;
+	color: #000;
+}
+
+.card .card-inside-title small {
+	color: #999;
+	display: block;
+	font-size: 11px;
+	margin-top: 5px;
+}
+
+.card .card-inside-title small a {
+	color: #777;
+	font-weight: bold;
+}
+
+.card .card-inside-title:first-child {
+	margin-top: 0;
+}
+
+
+.card .body {
+	font-size: 14px;
+	color: #555;
+	padding-top: 20px;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.categorisName {
+	text-align: left;
+}
+
+.progress {
+	width: 230px;
+}
+
+
+/* -------------------- MAP ------------------- */
+
+#google-container, #google-container2 {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-color: #e7eaf0;
+}
+@media only screen and (min-width: 768px) {
+  #google-container, #google-container2 {
+    height: 300px;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  #google-container, #google-container2 {
+    height: 350px;
+  }
+}
+
+#cd-google-map {
+  position: relative;
+}
+#cd-google-map address {
+  position: absolute;
+  width: 96%;
+  bottom: 0;
+  left: 2%;
+  padding: 1em 1em;
+  background-color: rgba(211, 104, 104, 0.9);
+  color: #ffffff;
+  font-size: 12px;
+  font-size: 0.8125rem;
+}
+@media only screen and (min-width: 768px) {
+  #cd-google-map address {
+    font-size: 15px;
+    font-size: 0.9375rem;
+    text-align: center;
+  }
+}

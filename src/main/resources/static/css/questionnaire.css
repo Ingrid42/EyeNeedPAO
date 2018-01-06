@@ -1,0 +1,521 @@
+********************** IMPORT *********************/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+/********************** GENERAL *********************/
+html, body {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(-135deg, rgb(11,68,104), rgb(139,141,155));
+  background: -webkit-linear-gradient(-135deg, rgb(11,68,104), rgb(139,141,155));
+  background-attachment: fixed;
+}
+
+body {
+  color: #474A4A;
+  font-family: 'Lato', "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.471;
+}
+
+
+
+.bringFront {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+/*   text-align: center; */
+}
+
+/********************** NAVBAR *********************/
+.navbar {
+  height: 60px;
+}
+
+/********************** CARD RESPONSIVE *********************/
+
+
+@media (min-width: 1270px) {
+  .fixed_height_row1 {
+    /*height: 540px;*/
+    height: 100%;
+  }
+}
+
+/********************** CARD *********************/
+
+.x_panel {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 10px 17px;
+  display: inline-block;
+  border: 1px solid #E6E9ED;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  column-break-inside: avoid;
+  opacity: 1;
+  transition: all .2s ease;
+  background-color: #ffffff;
+}
+
+/*ligne de séparation titre/contenu*/
+.x_title {
+  border-bottom: 2px solid #E6E9ED;
+  padding: 1px 5px 6px;
+  margin-bottom: 10px;
+}
+
+.x_part {
+  border-bottom: 2px solid #E6E9ED;
+  padding: 1px 5px 6px;
+  margin-bottom: 10px;
+}
+
+/* titre à gauche */
+.x_title h2 {
+  margin: 5px 0 6px;
+  float: left;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 24px;
+}
+
+.x_content {
+  padding: 0 5px 6px;
+  position: relative;
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-top: 5px;
+}
+
+/********************** TABLEAU *********************/
+
+
+table.tile_info {
+  width: 100%
+}
+table.tile_info td {
+  text-align: left;
+  padding: 1px;
+  font-size: 15px
+}
+table.tile_info td p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  line-height: 28px
+}
+table.tile_info td i {
+  margin-right: 8px;
+  font-size: 17px;
+  float: left;
+  width: 18px;
+  line-height: 28px
+}
+table.tile_info td:first-child {
+  width: 83%
+}
+
+/********************** TOOL REDUIRE ET SUPPRIMER FENETRE *********************/
+
+.panel_toolbox {
+  float: right;
+  min-width: 40px
+}
+.panel_toolbox>li {
+  float: left;
+  cursor: pointer
+}
+.panel_toolbox>li>a {
+  padding: 5px;
+  color: #C5C7CB;
+  font-size: 14px
+}
+.panel_toolbox>li>a:hover {
+  background: #F5F7FA
+}
+
+/*.navbar-right {
+  margin-right: 0
+}
+
+.top_nav .navbar-right {
+  margin: 0;
+  width: 70%;
+  float: right
+}
+.top_nav .navbar-right li {
+  display: inline-block;
+  float: right;
+  position: static
+}*/
+
+/********************** MEDIA QUERY *********************/
+
+@media (min-width: 480px) {
+  .top_nav .navbar-right li {
+    position: relative
+  }
+}
+
+
+@media (max-width: 991px) {
+  .nav-md .container.body .right_col,
+  .nav-md .container.body .top_nav {
+    width: 100%;
+    margin: 0
+  }
+  .nav-md .container.body .col-md-3.left_col {
+    display: none
+  }
+  .nav-md .container.body .right_col {
+    width: 100%;
+    padding-right: 0
+  }
+  .right_col {
+    padding: 10px !important
+  }
+}
+@media (max-width: 1200px) {
+  .x_title h2 {
+    width: 62%;
+    font-size: 17px
+  }
+  .tile,
+  .graph {
+    zoom: 85%;
+    height: inherit
+  }
+}
+@media (max-width: 1270px) and (min-width: 192px) {
+  .x_title h2 small {
+    display: none
+  }
+}
+
+/********************** COULEUR *********************/
+
+.blue {
+  color: #3498DB
+}
+.purple {
+  color: #5F0F40
+}
+.yellow {
+  color: #FB8B24
+}
+.orange {
+  color: #E36414
+}
+.pink {
+  color: #9A031E
+}
+.dark {
+  color: #34495E
+}
+
+.bg-purple {
+  background-color: #9A031E !important;
+}
+
+.bg-blue {
+  background-color: #3498DB !important;
+}
+
+.bg-yellow {
+  background-color: #FB8B24 !important;
+}
+
+
+.overflow_hidden {
+  overflow: hidden !important;
+}
+
+/********************** GRILLE BOOTSTRAP *********************/
+
+.col-xs-1,
+.col-sm-1,
+.col-md-1,
+.col-lg-1,
+.col-xs-2,
+.col-sm-2,
+.col-md-2,
+.col-lg-2,
+.col-xs-3,
+.col-sm-3,
+.col-md-3,
+.col-lg-3,
+.col-xs-4,
+.col-sm-4,
+.col-md-4,
+.col-lg-4,
+.col-xs-5,
+.col-sm-5,
+.col-md-5,
+.col-lg-5,
+.col-xs-6,
+.col-sm-6,
+.col-md-6,
+.col-lg-6,
+.col-xs-7,
+.col-sm-7,
+.col-md-7,
+.col-lg-7,
+.col-xs-8,
+.col-sm-8,
+.col-md-8,
+.col-lg-8,
+.col-xs-9,
+.col-sm-9,
+.col-md-9,
+.col-lg-9,
+.col-xs-10,
+.col-sm-10,
+.col-md-10,
+.col-lg-10,
+.col-xs-11,
+.col-sm-11,
+.col-md-11,
+.col-lg-11,
+.col-xs-12,
+.col-sm-12,
+.col-md-12,
+.col-lg-12 {
+  position: relative;
+  min-height: 1px;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+/********************* PROFIL *******************/
+
+.titleCorrection {
+	margin-top : 5px;
+	text-align: center;
+	font-weight: bold !important;
+	background-color: rgba(154,188,214,0.2);
+}
+
+.contentCorrection {
+	text-align: center;
+	font-size: 18px;
+	padding : 0;
+	margin : 0;
+	margin-top : -15px;
+}
+
+
+
+blockquote {
+  color: #fff;
+  font-size: 26px;
+  text-align: left;
+  margin-top: 2px;
+  margin-left: 90px; 
+}
+
+
+blockquote > p {
+  margin-top: 14px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.blockInfo {
+	margin-top: 4px;
+	margin-left: 120px;
+}
+
+
+#imgProfil {
+  float: left;
+  margin: 10px 10px 10px 10px;
+  margin-left: 2%;
+  border-radius: 50%;
+}
+
+
+.col-list .col-head {
+  color: white;
+  border-bottom: 1.5px solid #fff;
+  border-radius: 5px 5px 0 0;
+}
+
+
+.col-list .col-head h3 {
+  margin-bottom: 5px;
+  font-size: 2em;
+  font-weight: 700;
+  color: #fff;
+}
+
+.visionCorrection {
+  color: #fff;
+  margin-left: 20px;
+  padding: 0;
+}
+
+label {
+  margin-top: 8px;
+  display: block;
+  padding: 0.5em;
+  text-align: center;
+/*   border-bottom: 1px solid #CCC; */
+/*   color: #666; */
+}
+label:hover {
+/*   color: #000; */
+}
+label::before {
+  font-family: Consolas, monaco, monospace;
+  font-weight: bold;
+  font-size: 15px;
+  content: "+";
+  vertical-align: text-top;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
+}
+#expand {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
+  padding : 0 !important;
+  margin : 0 !important;
+/*   color: #FFF; */
+}
+
+/* section { */
+/*   padding: 0 20px; */
+/* } */
+
+#toggle:checked ~ #expand {
+  height: auto;
+}
+#toggle:checked ~ label::before {
+  content: "-";
+}
+
+/* p, span { */
+/*   color: #111; */
+/* } */
+
+
+
+/*.optionRight {
+  text-align: right;
+}
+
+.optionRight, .optionLeft {
+  margin-left: 30px;
+}*/
+
+.dropdown {
+  margin-top: 30px;
+}
+
+a.historique, a.historique:after, a.historique:before {
+  text-decoration:none;
+  color: #fff;
+}
+
+
+
+a:hover {
+  text-decoration:none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.dropdown-menu.multi-column {
+    width: 500px;
+}
+
+.dropdownDashboard .dropdown-menuDashboard {
+    display: block !important;
+    position: static !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.right_col {
+  margin-left: 50px;
+  padding: 0;
+  margin-top : 40px;
+}
+
+
+.container {
+  width: 94%;
+  padding: 0;
+}
+
+/****** Panel ******/
+#buttonArbre{
+	margin-bottom: 30px;
+}
+
+/**************** RECTIFICATION DE CSS CAR PB D ANGULAR POUR NAVBAR CONFORME *********************/
+
+#navHeader {
+	margin-top : 50px !important;
+	margin-left : 110px !important;
+}
+
+
+/**/
+
+#feedback {
+	color: #fff;
+}
+
+/* .row { */
+/* 	margin: 0 !important; */
+/* 	padding : 0 !important; */
+/* } */
+
+.title_survey {
+	position: absolute;
+	float: left;
+/* 	margin-left: -5px; */
+}
+
+.correctionSurvey0 {
+	margin-right: -60px;
+}
+
+.correctionSurvey1 {
+	margin-right: -40px;
+}
+
+.correctionSurvey2 {
+	margin-right: -20px;
+}
+
+.content_survey > label {
+	font-size: 12px;
+	margin-bottom: 40px;
+	margin-left: -10px;
+}
+
+.logoAcceuil {
+	margin-bottom: 5px !important;
+}
+
+#phrase2 {
+	margin-bottom: -8px !important;
+}
+
+.btnValidation {
+	margin-top: 20px !important;
+}

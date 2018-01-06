@@ -1,0 +1,40 @@
+.group input:focus ~ label,
+input:valid ~ label {
+    top: -12px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.cgu{
+	margin-top: 5px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: justify;
+}
+
+select {
+    background-color:transparent !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+option {
+	color: #111 !important;
+}
+
+.lienCgu {
+	text-decoration: none;
+	color: white;
+	font-size: 12px;
+}
+
+.buttonMP {
+	text-transform: none !important;
+	font-size: 15px;
+}
+
+a, a:hover, .hereToo {
+	color: white !important;
+	text-decoration: none !important;
+	font-size: 13px;
+}

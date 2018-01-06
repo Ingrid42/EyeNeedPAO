@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Modules</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap/bootstrap.css" th:href="@{css/bootstrap/bootstrap.css}" />
+<!-- 	<link rel="stylesheet" type="text/css" href="../static/css/custom.min.css" th:href="@{css/custom.min.css}"  /> -->
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap/eyeneed.css" th:href="@{css/bootstrap/eyeneed.css}" />
+		<link rel="stylesheet" type="text/css" href="../static/css/accueil.css" th:href="@{css/accueil.css}"  />
+		<link rel="stylesheet" type="text/css" href="../static/css/modules.css" th:href="@{css/modules.css}"  />
+	</head>
+
+	<body>
+	<!-- HEAD -->
+		<div id="particles-js">
+			<div class="bringFront">
+  			
+				<div class="container-fluid">
+				<!-- Navbar -->
+			<div th:include="layouts/includeAdmin :: headerAdmin">
+			</div>
+			<div class="row" >
+			
+			</div>
+
+			<!-- Affichage des modules -->
+					<div class="row">
+						<!-- BODY -->
+						<div class="col-md-12 col-sm-12">
+						<!-- Lister les Modules -->
+							<div class="panel panel-primary">
+					  			<div class="panel-heading">
+					    			<h3 class="panel-title">Liste des modules</h3>
+					  			</div>
+					  			<form action="saveModules" method="post" id="formModule">
+									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+								  	<input type="hidden" th:field="${ListeModules.moduleSelect}"/>
+						  			<div class="panel-body" id="listeModule">
+										<th:block th:each="module, rowStat:${ListeModules.modules}">
+											<div th:id="module_+${rowStat.index}">
+												<input type="hidden" th:field="${ListeModules.modules[__${rowStat.index}__].id_module}"/>	
+												<input type="hidden" class="position" th:field="${ListeModules.modules[__${rowStat.index}__].position}"/>	
+												<p th:text="${module.nom}"/>
+												<div class="btn-group">
+													<button type="button" th:onclick="'selectModuleQuestionnaire(\'module_'+${rowStat.index}+'\')'">Editer le module</button>
+							    					<button type="button" th:onclick="'monterModule(\'module_'+${rowStat.index}+'\')'">Monter</button>
+							    					<button type="button" th:onclick="'descendreModule(\'module_'+${rowStat.index}+'\')'">Descendre</button>
+								    				<button type="button" >Supprimer</button>
+												</div>
+											</div>
+										</th:block>
+							  		</div>
+						  			<button type="button" onclick="nouveauModule()">Ajouter un module</button>
+						  			<button type="submit"> Sauvegarder</button>
+									<input id="nbNewModule" type="hidden" value="0"/>
+								</form>
+							</div>
+						</div>
+					</div>
+					<footer>
+						<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+			    		<script th:src="@{js/bootstrap.min.js}"></script>
+			    		<script th:src="@{js/module.js}"></script>
+			    		<script th:src="@{js/custom.js}"></script>
+			   			<script th:src="@{js/eyeneed.js}"></script>		   			
+			   			<script th:src="@{js/particles.js}"></script>
+						<script th:src="@{js/particlesConfig.js}"></script>
+			
+					</footer>
+				</div>
+			</div>
+		</div>		
+	</body>
+</html>

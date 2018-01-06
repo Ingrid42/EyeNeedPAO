@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Liste Questions</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap/bootstrap.css" th:href="@{css/bootstrap/bootstrap.css}" />
+<!-- <link rel="stylesheet" type="text/css" href="../static/css/custom.min.css" th:href="@{css/custom.min.css}"  /> -->
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap/eyeneed.css" th:href="@{css/bootstrap/eyeneed.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/spacetree.css" th:href="@{css/spacetree.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/accueil.css" th:href="@{css/accueil.css}"  />
+<link rel="stylesheet" type="text/css" href="../static/css/questionnaire.css" th:href="@{css/questionnaire.css}"  />
+
+
+
+</head>
+<body th:onload="'javascript:init('+${arbreQuestionnaire} +')'">
+
+	<div id="particles-js">
+		<div class="bringFront">
+  <!-- Navbar -->
+  <!-- top navigation -->
+			<div class="container-fluid">
+			
+				<!-- Navbar -->
+			<div th:include="layouts/includeAdmin :: headerAdmin">
+			</div>
+			<div class="row" >
+			
+			</div>
+	
+			<div class="row">
+				<div class="col-md-12" id="container">
+					<div id="infovis"></div>    
+					<div id="log"></div>
+				</div>
+			</div>
+			
+
+			<div class="row">
+				<div class="container col-md-12">			
+					<div id="buttonArbre">	
+						<button id="addQuestion" class="btn">Ajouter Question</button>
+						<button id="addReponse" class="btn">Ajouter Reponse</button>
+						<button id="supprimer" class="btn">Supprimer</button>
+						<button id="monter" class="btn">monter</button>
+						<button id="descendre" class="btn">descendre</button>
+					</div>
+					
+					<div class="row">
+					<form action="#" th:object="${ListeQuestion}" th:action="@{/saveQuestions}" method="post">
+						<div class="row">
+							<div class="col-md-6 col-sm-6">
+								<!-- Lister les Questions -->
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+								    	<h3 class="panel-title">Nom du module</h3>
+									</div>
+									<div class="row">
+										<div><input type="hidden" th:field="${ListeQuestion.module.id_module}"/></div>
+										<div class="col-md-12"><input type="text" th:field="${ListeQuestion.module.nom}"/></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-sm-4">
+								<!-- Lister les Questions -->
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+								    	<h3 class="panel-title">Liste des Questions</h3>
+									</div>
+									<div class="panel-body container-fluid">
+										<div class="row">
+											<div class="col-md-3">Texte</div>
+										</div>	
+										<div id="formQuestion">
+											<th:block th:each="question, rowStat : ${ListeQuestion.questions}" > 
+												<div th:id="'form_question_'+${question.id_question}" class="question row"> 
+													<div><input type="hidden" th:field="${ListeQuestion.questions[__${rowStat.index}__].id_question}"/></div>
+													<div class="col-md-3"><input type="text" class="texteQuestion" th:attr="numerochamp='question_'+${question.id_question}" th:field="${ListeQuestion.questions[__${rowStat.index}__].texte}" /></div> 
+													<div><input type="hidden" th:field="${ListeQuestion.questions[__${rowStat.index}__].position}" th:class="'positionquestion_'+${question.id_question}" /></div> 
+												</div>
+											</th:block>
+										</div> 
+									</div>
+								</div>
+							</div>
+						
+			
+							<!--Affichage des reponses -->
+							<div class="col-md-8 col-sm-8">
+								<div class="panel panel-success">
+									<div class="panel-heading">
+										<h3 class="panel-title">Réponses de la question sélectionnées</h3>
+									</div>
+									<div class="panel-body container-fluid">
+										<div class="row">
+											<div class="col-md-3">Texte</div>
+											<div class="col-md-3">Type</div>
+											<div class="col-md-3">Champ Libre</div>
+											<div class="col-md-3">Texte par Default</div>
+										</div>
+										<div id="formReponse">
+											<th:block  th:each="reponse, rowStat : ${ListeQuestion.reponses}" >
+												<div th:class="'question_'+${reponse.question.id_question}+'Id_question reponse row'" id="'form_reponse_'+${reponse.id_reponse}">
+													<div><input type="hidden" th:field="${ListeQuestion.reponses[__${rowStat.index}__].id_reponse}"/></div>
+													<div class="col-md-3"><input type="text" class="texteQuestion" th:field="${ListeQuestion.reponses[__${rowStat.index}__].texte}" th:attr="numerochamp='reponse_'+${reponse.id_reponse}"/></div>
+													<div class="col-md-3"><input type="text" th:field="${ListeQuestion.reponses[__${rowStat.index}__].type}"/></div>
+													<div><input type="hidden" th:field="${ListeQuestion.reponses[__${rowStat.index}__].position}" th:class="'positionreponse_'+${reponse.id_reponse}"/></div>
+													<div class="col-md-3"><input type="text" th:field="${ListeQuestion.reponses[__${rowStat.index}__].isCommentaire}"/></div>
+													<div class="col-md-3"><input type="text" th:field="${ListeQuestion.reponses[__${rowStat.index}__].commentaire}"/></div>
+												</div>
+											</th:block>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+			
+						<input type="submit" class="btn" value="Save" />
+						<button type="button" class="btn" th:href="@{/modules}">  Retour </button>
+					</form>
+		
+					<input id="nbNewQuestion" type="hidden" value="0"/>
+					<input id="nbNewReponse" type="hidden" value="0"/>
+					<input id="nbNewRelation" type="hidden" value="0"/>
+		
+		
+				</div>
+			</div>
+			
+			
+				<!-- BOTOM -->
+		
+				<script th:src="@{js/admin_questions.js}"></script>
+				<script th:src="@{js/jit.js}"></script>
+				<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+			    <script th:src="@{js/bootstrap.min.js}"></script>
+			    <script th:src="@{js/custom.js}"></script>
+		
+				<script th:src="@{js/particles.js}"></script>
+				<script th:src="@{js/particlesConfig.js}"></script>
+		
+			
+		
+		</div>
+		
+		</div>
+		
+		</div>
+	</div>
+</body>
+</html>
